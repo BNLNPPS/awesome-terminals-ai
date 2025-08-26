@@ -134,6 +134,30 @@ Most AI tools support OpenAI-compatible APIs. For tools requiring Anthropic-comp
 #### Copilot API Bridge
 - **[copilot-api](https://github.com/ericc-ch/copilot-api)** - Converts GitHub Copilot into OpenAI/Anthropic API compatible server for use with Claude Code
 
+**Deployment Example (Singularity/CVMFS)**:
+The `copilot-api` tool is available in the modern-linuxtools Singularity image on CVMFS:
+
+```bash
+# Setup the environment
+$ source /cvmfs/atlas.sdcc.bnl.gov/users/yesw/singularity/alma9-x86/modern-linuxtools/setupMe.sh
+
+# Start the API wrapper
+$ copilot-api start -c
+[...]
+  ➜ Listening on: http://130.199.48.146:4141/
+
+# In another terminal, use with Aider
+$ export ANTHROPIC_BASE_URL=http://130.199.48.146:4141 && aider --no-git --anthropic-api-key dummy --model anthropic/claude-sonnet-4
+
+# Or use with Claude Code CLI (also included in modern-linuxtools)
+$ export ANTHROPIC_BASE_URL=http://130.199.48.146:4141 && claude-code
+```
+
+**Important Notes**:
+- Use your own URL in the `ANTHROPIC_BASE_URL` environment variable and remove the trailing '/'
+- Enable X11 forwarding when SSH-ing to remote hosts (required by xsel in the wrapper): `ssh -X username@hostname`
+- With this API wrapper, all GitHub Copilot models become accessible through Claude Code CLI
+
 ## Usage Guides
 
 ### Getting Started
