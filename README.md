@@ -156,7 +156,7 @@ $ export ANTHROPIC_BASE_URL=http://130.199.48.146:4141 && claude-code
 **Important Notes**:
 - Use your own URL in the `ANTHROPIC_BASE_URL` environment variable and remove the trailing '/'
 - Enable X11 forwarding when SSH-ing to remote hosts (required by xsel in the wrapper): `ssh -X username@hostname`
-- With this API wrapper, all GitHub Copilot models become accessible through Claude Code CLI
+- With this API wrapper, all GitHub Copilot models (not including the Market models) become accessible through Claude Code CLI
 
 ## Usage Guides
 
