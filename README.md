@@ -22,9 +22,9 @@ A curated collection of AI-powered tools for terminal and command-line environme
 - **[anthropic-cli](https://github.com/dvcrn/anthropic-cli)** - Unofficial CLI for Claude/Anthropic API
 - **[tAI](https://github.com/bjarneo/tAI)** - Terminal AI assistant
 - **[gemini-cli](https://github.com/Zibri/gemini-cli)** - API-free Google Gemini CLI tool
-- **Gemini CLI** - Google Gemini command-line interface
-- **Qwen Code CLI** - CLI interface for Qwen coding models
-- **Grok CLI** - CLI interface for Grok AI
+- **[Gemini CLI](https://github.com/google-gemini/gemini-cli)** - Official Google Gemini command-line interface
+- **[Qwen Code CLI](https://github.com/QwenLM/qwen-code)** - CLI interface for Qwen's large language models
+- **[Grok CLI](https://grokcli.io/)** - Command-line interface for xAI's Grok
 
 ## Code-Focused AI Tools
 
@@ -40,13 +40,12 @@ A curated collection of AI-powered tools for terminal and command-line environme
 - **[OpenHands](https://github.com/All-Hands-AI/OpenHands)** - AI software engineer agent
 - **[ForgeCode](https://github.com/antinomyhq/forge)** - AI-powered development tool
 - **[Auggie CLI](https://docs.augmentcode.com/cli/overview)** - AI coding assistant CLI
+- **[OpenAI Codex CLI](https://github.com/openai/codex)** - OpenAI's code generation and completion tool
 
 ### Enterprise Solutions
 - **[AMP CLI](https://www.npmjs.com/package/@sourcegraph/amp)** - Sourcegraph's AI-powered CLI
-- **RovoDev Agent** - Atlassian's AI development assistant
+- **[RovoDev CLI](https://www.atlassian.com/blog/announcements/rovo-dev-command-line-interface)** - Atlassian's AI-powered development assistant CLI
 
-### Legacy Tools
-- **Codex CLI** - OpenAI Codex command-line interface (deprecated)
 
 ## Terminal Integration Tools
 
