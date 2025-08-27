@@ -14,33 +14,34 @@ A curated collection of AI-powered tools for terminal and command-line environme
 ## General Purpose AI Chat Tools
 
 ### Multi-Provider Chat Interfaces
-- **[llm](https://github.com/simonw/llm)** - Command-line tool for interacting with Large Language Models
-- **[AIChat](https://github.com/sigoden/aichat)** - All-in-one AI CLI tool supporting multiple AI models
-- **[mods](https://github.com/charmbracelet/mods)** - AI on the command line by Charm
+- **[llm](https://github.com/simonw/llm)** - A command-line tool and Python library for interacting with Large Language Models, including OpenAI, PaLM, and local models.
+- **[AIChat](https://github.com/sigoden/aichat)** - A powerful AI chat CLI that supports GPT-4, Gemini, Claude, and more, often without needing an API key.
+- **[mods](https://github.com/charmbracelet/mods)** - AI on the command line from Charm; brings the power of large language models to your terminal.
+- **[tAI](https://github.com/bjarneo/tAI)** - A terminal AI assistant that translates natural language to shell commands, supporting multiple providers (OpenAI, Google, Anthropic, Groq).
 
 ### Provider-Specific Tools
-- **[anthropic-cli](https://github.com/dvcrn/anthropic-cli)** - Unofficial CLI for Claude/Anthropic API
-- **[tAI](https://github.com/bjarneo/tAI)** - Terminal AI assistant
-- **[gemini-cli](https://github.com/Zibri/gemini-cli)** - API-free Google Gemini CLI tool
-- **[Gemini CLI](https://github.com/google-gemini/gemini-cli)** - Official Google Gemini command-line interface
-- **[Qwen Code CLI](https://github.com/QwenLM/qwen-code)** - CLI interface for Qwen's large language models
-- **[Grok CLI](https://grokcli.io/)** - Command-line interface for xAI's Grok
+- **[anthropic-cli](https://github.com/dvcrn/anthropic-cli)** - An unofficial CLI for interacting with the Claude/Anthropic API.
+- **[gemini-cli](https://github.com/Zibri/gemini-cli)** - An API-free command-line interface for Google Gemini.
+- **[Gemini CLI](https://github.com/google-gemini/gemini-cli)** - The official Google Gemini command-line interface for interacting with the Gemini API.
+- **[Qwen Code CLI](https://github.com/QwenLM/qwen-code)** - A command-line interface for Alibaba Cloud's Qwen large language models.
+- **[Grok CLI](https://grokcli.io/)** - The official command-line interface for interacting with xAI's Grok.
 
 ## Code-Focused AI Tools
 
 ### AI Coding Assistants
-- **[Aider](https://aider.chat/)** - AI pair programming in your terminal
-- **[Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code)** - Official Anthropic CLI for code assistance
-- **[GitHub Copilot CLI](https://cli.github.com/manual/gh_copilot)** - GitHub's AI assistant for the command line
-- **[Cursor CLI](https://cursor.com/cli)** - AI-first code editor CLI
-- **[Plandex](https://github.com/plandex-ai/plandex)** - Terminal-based AI coding engine
+- **[Aider](https://aider.chat/)** - AI pair programming in your terminal that lets you code with models like GPT-4 in your local git repository.
+- **[Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code)** - Official Anthropic CLI for code assistance, bringing the power of Claude to your terminal.
+- **[GitHub Copilot CLI](https://cli.github.com/manual/gh_copilot)** - GitHub's AI assistant for the command line, providing a chat-like interface for shell and git commands.
+- **[Cursor CLI](https://cursor.com/cli)** - A command-line interface for the AI-first code editor, Cursor.
+- **[Plandex](https://github.com/plandex-ai/plandex)** - A terminal-based AI coding engine designed for complex, long-running tasks.
+- **[Crush](https://github.com/charmbracelet/crush)** - A terminal-based AI assistant and shell for software development with chat, code analysis, and LSP integration.
 
 ### Code Generation and Analysis
-- **[OpenCode](https://github.com/sst/opencode)** - AI-powered code generation tool
-- **[OpenHands](https://github.com/All-Hands-AI/OpenHands)** - AI software engineer agent
-- **[ForgeCode](https://github.com/antinomyhq/forge)** - AI-powered development tool
-- **[Auggie CLI](https://docs.augmentcode.com/cli/overview)** - AI coding assistant CLI
-- **[OpenAI Codex CLI](https://github.com/openai/codex)** - OpenAI's code generation and completion tool
+- **[OpenCode](https://github.com/sst/opencode)** - An AI-powered code generation tool that lets you build and iterate on ideas with AI.
+- **[OpenHands](https://github.com/All-Hands-AI/OpenHands)** - An AI software engineer agent that can execute complex tasks on your computer.
+- **[ForgeCode](https://github.com/antinomyhq/forge)** - An AI-powered development tool to help build, test, and deploy applications from the terminal.
+- **[Auggie CLI](https://docs.augmentcode.com/cli/overview)** - Context-aware AI coding CLI assistant from Augment Code.
+- **[OpenAI Codex CLI](https://github.com/openai/codex)** - OpenAI's new lightweight coding agent that runs in your terminal.
 
 ### Enterprise Solutions
 - **[AMP CLI](https://www.npmjs.com/package/@sourcegraph/amp)** - Sourcegraph's AI-powered CLI
@@ -52,13 +53,59 @@ A curated collection of AI-powered tools for terminal and command-line environme
 ### Shell Enhancements
 - **[ShellGPT](https://github.com/TheR1D/shell_gpt)** - ChatGPT integration for shell commands
 - **[zsh-ai](https://github.com/matheusml/zsh-ai)** - AI-powered Zsh plugin
-- **[Crush](https://github.com/charmbracelet/crush)** - Modern shell with AI features
 
 ### AI-Enhanced Terminals
 - **[Warp Terminal](https://www.warp.dev/)** - Modern terminal with AI command suggestions
 - **[Wave Terminal](https://waveterm.dev/)** - Next-generation terminal with AI integration
 
+## Tool Comparison
+
+| Tool | Cost Model | Model Flexibility | Primary Use |
+| :--- | :--- | :--- | :--- |
+| **General Purpose** | | | |
+| `llm` | API Key (BYOK*) | User-configurable | General Chat |
+| `AIChat` | Free (mostly) | Selectable | General Chat |
+| `mods` | API Key (BYOK*) | User-configurable | General Chat |
+| `tAI` | API Key (BYOK*) | User-configurable | Shell Command Gen |
+| `anthropic-cli`| API Key (Usage-based**) | Bound (Anthropic) | General Chat |
+| `gemini-cli` | Free (API-less) | Bound (Gemini) | General Chat |
+| `Gemini CLI` | API Key (Generous Free Tier) | Bound (Gemini) | General Chat |
+| `Qwen Code CLI`| API Key (Generous Free Tier) | Bound (Qwen) | General Chat |
+| `Grok CLI` | Paid Subscription | Bound (Grok) | General Chat |
+| **Coding Assistants** | | | |
+| `Aider` | API Key (BYOK*) | User-configurable | Code Assistant |
+| `Claude Code CLI`| API Key (Usage-based**) | Bound (Anthropic) | Code Assistant |
+| `GitHub Copilot CLI`| Paid Subscription | Bound (Copilot) | Code/Shell Assistant |
+| `Cursor CLI` | Freemium | User-configurable | Code Assistant |
+| `Plandex` | API Key (BYOK*) | User-configurable | Code Assistant |
+| `Crush` | Free (Shell) + API Key | User-configurable | AI Shell / Code Assistant |
+| **Code Generation** | | | |
+| `OpenCode` | API Key (BYOK*) | User-configurable | Code Generation |
+| `OpenHands` | API Key (BYOK*) | User-configurable | Code Generation |
+| `ForgeCode` | API Key (BYOK*) | User-configurable | Code Generation |
+| `Auggie CLI` | API Key (Paid) | Bound (Augment) | Code Assistant |
+| `OpenAI Codex CLI`| API Key (Usage-based**) | Bound (OpenAI) | Code Assistant |
+| **Shell & Terminal** | | | |
+| `ShellGPT` | API Key (BYOK*) | User-configurable | Shell Command Gen |
+| `zsh-ai` | API Key (BYOK*) | User-configurable | Shell Plugin |
+| `Warp Terminal`| Freemium | Bound (Built-in) | Terminal |
+| `Wave Terminal`| Free | User-configurable | Terminal |
+| **Enterprise** | | | |
+| `AMP CLI` | Paid (Enterprise) | Bound (Cody) | Code Assistant |
+| `RovoDev CLI` | Paid (Enterprise) | Bound (Atlassian) | Code Assistant |
+
+*\*BYOK (Bring Your Own Key): These tools act as clients and require you to provide your own API key from a model provider.*
+*\*\*Usage-based: These APIs typically offer a small amount of free credits, after which the cost is based on usage (pay-as-you-go).*
+
 ## Free API Providers
+
+### Gemini API
+
+The free tier allows you to use the *Gemini-2.5-Pro* make **5 requests per minutes, and 100 requests
+per day**. You an find more details at
+https://ai.google.dev/gemini-api/docs/rate-limits.
+
+The API key can be created at https://aistudio.google.com/app/apikey.
 
 ### GitHub Models
 
