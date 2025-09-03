@@ -24,10 +24,10 @@ A curated collection of AI-powered tools for terminal and command-line environme
 
 ### Provider-Specific Tools
 
-- **[Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code)** - Official Anthropic CLI for code assistance, bringing the power of Claude to your terminal.
+- **[Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code)** - Official Anthropic CLI for general-purpose AI assistance, bringing the power of Claude to your terminal.
 - **[Gemini CLI](https://github.com/google-gemini/gemini-cli)** - Official Google Gemini CLI with OAuth authentication, MCP support, built-in tools (Google Search, file ops, shell commands), and GitHub integration. Free tier: 60 requests/min, 1,000 requests/day.
-- **[OpenAI Codex CLI](https://github.com/openai/codex)** - OpenAI's official lightweight coding agent that runs in your terminal.
-- **[Qwen Code CLI](https://github.com/QwenLM/qwen-code)** - Official AI-powered workflow tool optimized for Qwen3-Coder models. Features code understanding, workflow automation, and session management. Offers Qwen OAuth with 2,000 free requests/day.
+- **[OpenAI Codex CLI](https://github.com/openai/codex)** - OpenAI's official CLI agent for general-purpose AI tasks that runs in your terminal.
+- **[Qwen Code CLI](https://github.com/QwenLM/qwen-code)** - Official AI-powered workflow tool for general tasks, optimized for Qwen3-Coder models. Features conversation management and session control. Offers Qwen OAuth with 2,000 free requests/day.
 - **[Grok CLI](https://grokcli.io/)** - Official conversational AI CLI tool for interacting with xAI's Grok models.
 
 ## Code-Focused AI Tools
@@ -63,38 +63,38 @@ A curated collection of AI-powered tools for terminal and command-line environme
 
 ## Tool Comparison
 
-| Tool                        | Cost Model                   | Model Flexibility          | Primary Use               |
-| :-------------------------- | :--------------------------- | :------------------------- | :------------------------ |
-| **General Purpose**   |                              |                            |                           |
-| `llm`                     | API Key (BYOK*)              | User-configurable          | General Chat              |
-| `AIChat`                  | Free (mostly)                | Selectable                 | General Chat              |
-| `mods`                    | API Key (BYOK*)              | User-configurable          | General Chat              |
-| `tAI`                     | API Key (BYOK*)              | User-configurable          | Shell Command Gen         |
-| `anthropic-cli`           | API Key (Usage-based**)      | Bound (Anthropic)          | General Chat              |
-| `gemini-cli`              | Free (API-less)              | Bound (Gemini)             | General Chat              |
-| `Gemini CLI`              | API Key (Generous Free Tier) | Bound (Gemini)             | General Chat              |
+| Tool                        | Cost Model                   | Model Flexibility              | Primary Use               |
+| :-------------------------- | :--------------------------- | :----------------------------- | :------------------------ |
+| **General Purpose**   |                              |                                |                           |
+| `llm`                     | API Key (BYOK*)              | User-configurable              | General Chat              |
+| `AIChat`                  | Free (mostly)                | Selectable                     | General Chat              |
+| `mods`                    | API Key (BYOK*)              | User-configurable              | General Chat              |
+| `tAI`                     | API Key (BYOK*)              | User-configurable              | Shell Command Gen         |
+| `anthropic-cli`           | API Key (Usage-based**)      | Bound (Anthropic)              | General Chat              |
+| `gemini-cli`              | Free (API-less)              | Bound (Gemini)                 | General Chat              |
+| `Gemini CLI`              | API Key (Generous Free Tier) | Bound (Gemini)                 | General Chat              |
 | `Claude Code CLI`         | API Key (Usage-based**)      | User-configurable (via Router) | General Chat              |
-| `Qwen Code CLI`           | API Key (Generous Free Tier) | User-configurable          | General Chat              |
-| `OpenAI Codex CLI`        | API Key (Usage-based**)      | User-configurable          | General Chat              |
-| `Grok CLI`                | Paid Subscription            | Bound (Grok)               | General Chat              |
-| **Coding Assistants** |                              |                            |                           |
-| `Aider`                   | API Key (BYOK*)              | User-configurable          | Code Assistant            |
-| `GitHub Copilot CLI`      | Paid Subscription            | Bound (Copilot)            | Code/Shell Assistant      |
-| `Cursor CLI`              | Freemium                     | User-configurable          | Code Assistant            |
-| `Plandex`                 | API Key (BYOK*)              | User-configurable          | Code Assistant            |
-| `Crush`                   | Free (Shell) + API Key       | User-configurable          | AI Shell / Code Assistant |
-| `AMP CLI`                 | Paid (Enterprise)            | Bound (Sourcegraph)        | Code Assistant            |
-| `RovoDev CLI`             | Paid (Enterprise)            | Bound (Atlassian)          | Code Assistant            |
-| `Auggie CLI`              | API Key (Paid)               | Bound (Augment)            | Code Assistant            |
-| **Code Generation**   |                              |                            |                           |
-| `OpenCode`                | API Key (BYOK*)              | User-configurable          | Code Generation           |
-| `OpenHands`               | API Key (BYOK*)              | User-configurable          | Code Generation           |
-| `ForgeCode`               | API Key (BYOK*)              | User-configurable          | Code Generation           |
-| **Shell & Terminal**  |                              |                            |                           |
-| `ShellGPT`                | API Key (BYOK*)              | User-configurable          | Shell Command Gen         |
-| `zsh-ai`                  | API Key (BYOK*)              | User-configurable          | Shell Plugin              |
-| `Warp Terminal`           | Freemium                     | Bound (Built-in AI Agents) | AI-Enhanced Terminal      |
-| `Wave Terminal`           | Free (Open Source)           | User-configurable          | Multi-Feature Terminal    |
+| `Qwen Code CLI`           | API Key (Generous Free Tier) | User-configurable              | General Chat              |
+| `OpenAI Codex CLI`        | API Key (Usage-based**)      | User-configurable              | General Chat              |
+| `Grok CLI`                | Paid Subscription            | Bound (Grok)                   | General Chat              |
+| **Coding Assistants** |                              |                                |                           |
+| `Aider`                   | API Key (BYOK*)              | User-configurable              | Code Assistant            |
+| `GitHub Copilot CLI`      | Paid Subscription            | Bound (Copilot)                | Code/Shell Assistant      |
+| `Cursor CLI`              | Freemium                     | User-configurable              | Code Assistant            |
+| `Plandex`                 | API Key (BYOK*)              | User-configurable              | Code Assistant            |
+| `Crush`                   | Free (Shell) + API Key       | User-configurable              | AI Shell / Code Assistant |
+| `AMP CLI`                 | Paid (Enterprise)            | Bound (Sourcegraph)            | Code Assistant            |
+| `RovoDev CLI`             | Paid (Enterprise)            | Bound (Atlassian)              | Code Assistant            |
+| `Auggie CLI`              | API Key (Paid)               | Bound (Augment)                | Code Assistant            |
+| **Code Generation**   |                              |                                |                           |
+| `OpenCode`                | API Key (BYOK*)              | User-configurable              | Code Generation           |
+| `OpenHands`               | API Key (BYOK*)              | User-configurable              | Code Generation           |
+| `ForgeCode`               | API Key (BYOK*)              | User-configurable              | Code Generation           |
+| **Shell & Terminal**  |                              |                                |                           |
+| `ShellGPT`                | API Key (BYOK*)              | User-configurable              | Shell Command Gen         |
+| `zsh-ai`                  | API Key (BYOK*)              | User-configurable              | Shell Plugin              |
+| `Warp Terminal`           | Freemium                     | Bound (Built-in AI Agents)     | AI-Enhanced Terminal      |
+| `Wave Terminal`           | Free (Open Source)           | User-configurable              | Multi-Feature Terminal    |
 
 *\*BYOK (Bring Your Own Key): These tools act as clients and require you to provide your own API key from a model provider.*
 *\*\*Usage-based: These APIs typically offer a small amount of free credits, after which the cost is based on usage (pay-as-you-go).*
@@ -201,6 +201,7 @@ npm install -g @musistudio/claude-code-router
 
 Create `~/.claude-code-router/config.json` with your preferred providers:
 
+```json
 {
   "LOG": true,
   "API_TIMEOUT_MS": 600000,
@@ -252,6 +253,7 @@ Create `~/.claude-code-router/config.json` with your preferred providers:
     "longContext": "openrouter,google/gemini-2.5-pro-preview"
   }
 }
+```
 
 **Usage:**
 
