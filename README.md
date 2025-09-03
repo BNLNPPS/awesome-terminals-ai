@@ -244,7 +244,7 @@ Create `~/.claude-code-router/config.json` with your preferred providers:
       "name": "ollama",
       "api_base_url": "http://localhost:11434/v1/chat/completions",
       "api_key": "ollama",
-      "models": ["qwen3:30b", "gpt-oss:20b", """llama3.2:latest"]
+      "models": ["qwen3:30b", "gpt-oss:20b", "llama3.2:latest"]
     }
   ],
   "Router": {
