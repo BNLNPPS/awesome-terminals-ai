@@ -73,9 +73,9 @@ A curated collection of AI-powered tools for terminal and command-line environme
 | `anthropic-cli`           | API Key (Usage-based**)      | Bound (Anthropic)          | General Chat              |
 | `gemini-cli`              | Free (API-less)              | Bound (Gemini)             | General Chat              |
 | `Gemini CLI`              | API Key (Generous Free Tier) | Bound (Gemini)             | General Chat              |
-| `Claude Code CLI`         | API Key (Usage-based**)      | Bound (Anthropic)          | General Chat              |
-| `Qwen Code CLI`           | API Key (Generous Free Tier) | Bound (Qwen)               | General Chat              |
-| `OpenAI Codex CLI`        | API Key (Usage-based**)      | Bound (OpenAI)             | General Chat              |
+| `Claude Code CLI`         | API Key (Usage-based**)      | User-configurable (via Router) | General Chat              |
+| `Qwen Code CLI`           | API Key (Generous Free Tier) | User-configurable          | General Chat              |
+| `OpenAI Codex CLI`        | API Key (Usage-based**)      | User-configurable          | General Chat              |
 | `Grok CLI`                | Paid Subscription            | Bound (Grok)               | General Chat              |
 | **Coding Assistants** |                              |                            |                           |
 | `Aider`                   | API Key (BYOK*)              | User-configurable          | Code Assistant            |
