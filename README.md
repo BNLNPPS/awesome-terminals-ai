@@ -208,12 +208,12 @@ Gemma, and DeepSeek. Cross-platform with OpenAI-compatible API.
 
 | Machine | gpt-oss:120b | gpt-oss:20b | qwen3:8b | qwen3:30b |
 | :--- | :---: | :---: | :---: | :---: |
-| **BNL Windows** | - | 15 t/s | 12 t/s | 22 t/s |
+| **Windows** | - | 15 t/s | 12 t/s | 22 t/s |
 | **M3 Max** | - | 70 t/s | 57 t/s | 74 t/s |
 | **npps0** | 36 t/s | 156 t/s | 140 t/s | 163 t/s |
 
 **Machine Specifications:**
-- **BNL Windows**: CPU: Intel i9-12900, GPU: Intel UHD Graphics 770 (2 GB), RAM: 64 GB
+- **Windows**: CPU: Intel i9-12900, GPU: Intel UHD Graphics 770 (2 GB), RAM: 64 GB
 - **M3 Max**: Apple M3 Max with 64 GB RAM
 - **npps0**: CPU: Xeon(R) w7-3445 (40 CPUs), GPU: 2 Nvidia RTX 4090, RAM: 128 GB
 
