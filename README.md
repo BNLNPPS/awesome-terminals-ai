@@ -200,11 +200,17 @@ Gemma, and DeepSeek. Cross-platform with OpenAI-compatible API.
 
 #### Ollama Model Performance
 
+**Model Sizes:**
+- gpt-oss:120b: 65 GB
+- gpt-oss:20b: 13 GB
+- qwen3:8b: 5.2 GB
+- qwen3:30b: 18 GB
+
 | Machine | gpt-oss:120b | gpt-oss:20b | qwen3:8b | qwen3:30b |
 | :--- | :---: | :---: | :---: | :---: |
-| **BNL Windows** | - | 13 GB (15 t/s) | 5.2 GB (12 t/s) | 18 GB (22 t/s) |
-| **M3 Max** | - | 13 GB (70 t/s) | 5.2 GB (57 t/s) | 18 GB (74 t/s) |
-| **npps0** | 36 t/s | 13 GB (156 t/s) | 5.2 GB (140 t/s) | 18 GB (163 t/s) |
+| **BNL Windows** | - | 15 t/s | 12 t/s | 22 t/s |
+| **M3 Max** | - | 70 t/s | 57 t/s | 74 t/s |
+| **npps0** | 36 t/s | 156 t/s | 140 t/s | 163 t/s |
 
 **Machine Specifications:**
 - **BNL Windows**: CPU: Intel i9-12900, GPU: Intel UHD Graphics 770 (2 GB), RAM: 64 GB
