@@ -174,6 +174,8 @@ curl -L \
 
 **Setup**: Generate API key at [OpenRouter Settings](https://openrouter.ai/settings/keys)
 
+**Rate Limits**: If you have purchased at least 10 credits, your free model rate limit will be 1000 requests per day. Otherwise, you will be rate limited to 50 free model API requests per day.
+
 ### Groq
 
 [Groq](https://console.groq.com/) offers high-speed inference with free tier access.
@@ -195,6 +197,19 @@ Limits](https://console.groq.com/docs/rate-limits):
 - **[Ollama](https://ollama.ai/)** - Lightweight framework for running LLMs locally via command line. 
   Features simple CLI interface, RESTful API, Docker-like model management, and supports popular models like Llama, 
   Gemma, and DeepSeek. Cross-platform with OpenAI-compatible API.
+  
+#### Ollama Model Performance
+
+| Machine | gpt-oss:120b | gpt-oss:20b | qwen3:8b | qwen3:30b |
+| :--- | :---: | :---: | :---: | :---: |
+| **BNL Windows**[^1] | - | 13 GB (15 t/s) | 5.2 GB (12 t/s) | 18 GB (22 t/s) |
+| **M3 Max**[^2] | - | 13 GB (70 t/s) | 5.2 GB (57 t/s) | 18 GB (74 t/s) |
+| **npps0**[^3] | 36 t/s | 13 GB (156 t/s) | 5.2 GB (140 t/s) | 18 GB (163 t/s) |
+
+[^1]: CPU: Intel i9-12900, GPU: Intel UHD Graphics 770 (2 GB), RAM: 64 GB
+[^2]: Apple M3 Max with 64 GB RAM
+[^3]: CPU: Xeon(R) w7-3445 (40 CPUs), GPU: 2 Nvidia RTX 4090, RAM: 128 GB
+
 - **[LM Studio](https://lmstudio.ai/)** - User-friendly desktop GUI for running local LLMs with no 
   technical setup required. Features model marketplace, OpenAI-compatible API server, chat interface, 
   and support for GGUF models. Free for personal and commercial use.
@@ -342,7 +357,7 @@ $ export ANTHROPIC_BASE_URL=http://130.199.48.146:4141 && claude-code
 
 #### Aider
 
-*Detailed usage guide and examples for Aider will be added here*
+See [Aider.md](Aider.md) for a detailed usage guide and examples.
 
 #### Claude Code
 
