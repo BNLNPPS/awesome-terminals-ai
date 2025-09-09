@@ -192,12 +192,12 @@ Limits](https://console.groq.com/docs/rate-limits):
 
 ## Local Model Providers
 
-### Self-Hosted Solutions
+### Ollama
 
-- **[Ollama](https://ollama.ai/)** - Lightweight framework for running LLMs locally via command line. 
-  Features simple CLI interface, RESTful API, Docker-like model management, and supports popular models like Llama, 
-  Gemma, and DeepSeek. Cross-platform with OpenAI-compatible API.
-  
+**[Ollama](https://ollama.ai/)** - Lightweight framework for running LLMs locally via command line. 
+Features simple CLI interface, RESTful API, Docker-like model management, and supports popular models like Llama, 
+Gemma, and DeepSeek. Cross-platform with OpenAI-compatible API.
+
 #### Ollama Model Performance
 
 | Machine | gpt-oss:120b | gpt-oss:20b | qwen3:8b | qwen3:30b |
@@ -211,9 +211,11 @@ Limits](https://console.groq.com/docs/rate-limits):
 - **M3 Max**: Apple M3 Max with 64 GB RAM
 - **npps0**: CPU: Xeon(R) w7-3445 (40 CPUs), GPU: 2 Nvidia RTX 4090, RAM: 128 GB
 
-- **[LM Studio](https://lmstudio.ai/)** - User-friendly desktop GUI for running local LLMs with no 
-  technical setup required. Features model marketplace, OpenAI-compatible API server, chat interface, 
-  and support for GGUF models. Free for personal and commercial use.
+### LM Studio
+
+**[LM Studio](https://lmstudio.ai/)** - User-friendly desktop GUI for running local LLMs with no 
+technical setup required. Features model marketplace, OpenAI-compatible API server, chat interface, 
+and support for GGUF models. Free for personal and commercial use.
 
 ## API Proxies
 
