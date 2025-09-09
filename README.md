@@ -202,13 +202,14 @@ Limits](https://console.groq.com/docs/rate-limits):
 
 | Machine | gpt-oss:120b | gpt-oss:20b | qwen3:8b | qwen3:30b |
 | :--- | :---: | :---: | :---: | :---: |
-| **BNL Windows**[^1] | - | 13 GB (15 t/s) | 5.2 GB (12 t/s) | 18 GB (22 t/s) |
-| **M3 Max**[^2] | - | 13 GB (70 t/s) | 5.2 GB (57 t/s) | 18 GB (74 t/s) |
-| **npps0**[^3] | 36 t/s | 13 GB (156 t/s) | 5.2 GB (140 t/s) | 18 GB (163 t/s) |
+| **BNL Windows** | - | 13 GB (15 t/s) | 5.2 GB (12 t/s) | 18 GB (22 t/s) |
+| **M3 Max** | - | 13 GB (70 t/s) | 5.2 GB (57 t/s) | 18 GB (74 t/s) |
+| **npps0** | 36 t/s | 13 GB (156 t/s) | 5.2 GB (140 t/s) | 18 GB (163 t/s) |
 
-[^1]: CPU: Intel i9-12900, GPU: Intel UHD Graphics 770 (2 GB), RAM: 64 GB
-[^2]: Apple M3 Max with 64 GB RAM
-[^3]: CPU: Xeon(R) w7-3445 (40 CPUs), GPU: 2 Nvidia RTX 4090, RAM: 128 GB
+**Machine Specifications:**
+- **BNL Windows**: CPU: Intel i9-12900, GPU: Intel UHD Graphics 770 (2 GB), RAM: 64 GB
+- **M3 Max**: Apple M3 Max with 64 GB RAM
+- **npps0**: CPU: Xeon(R) w7-3445 (40 CPUs), GPU: 2 Nvidia RTX 4090, RAM: 128 GB
 
 - **[LM Studio](https://lmstudio.ai/)** - User-friendly desktop GUI for running local LLMs with no 
   technical setup required. Features model marketplace, OpenAI-compatible API server, chat interface, 
