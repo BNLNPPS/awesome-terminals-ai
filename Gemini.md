@@ -1,6 +1,8 @@
 # Gemini CLI
 
-Gemini CLI is an open-source AI agent that brings the power of Google's Gemini directly into your terminal. It's designed for developers who prefer working in command-line environments.
+Gemini CLI is an open-source AI agent that brings the power of Google's Gemini 
+directly into your terminal. It's designed for developers who prefer working 
+in command-line environments.
 
 GitHub Repository: [https://github.com/google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli)
 
@@ -36,6 +38,9 @@ Node.js version 20 or higher
 1. **OAuth Login**: Best for individual developers with Google account authentication
 2. **Gemini API Key**: For developers needing specific model control
 3. **Vertex AI**: For enterprise teams requiring advanced security and compliance
+
+Note: Under the Google account authentication, the model could be automatically 
+switched to the *flash* model after a few prompts.
 
 ## Usage Examples
 

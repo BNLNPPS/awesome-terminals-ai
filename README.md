@@ -163,6 +163,7 @@ curl -L \
 ### OpenRouter
 
 [OpenRouter](https://openrouter.ai/) provides unified API access to multiple AI models.
+You can try different models using one API, and find your best fit.
 
 **Free Models Available**:
 
