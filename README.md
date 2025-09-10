@@ -374,7 +374,11 @@ See [Aider.md](Aider.md) for a detailed usage guide and examples.
 
 #### Gemini CLI
 
-*Detailed usage guide and examples for Gemini CLI will be added here*
+Detailed usage guide and examples for Gemini CLI can be found in [Gemini.md](Gemini.md).
+
+#### Qwen Code
+
+Detailed usage guide and examples for Qwen Code can be found in [Qwen.md](Qwen.md).
 
 #### Warp Terminal
 
