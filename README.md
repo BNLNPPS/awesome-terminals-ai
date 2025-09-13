@@ -1,15 +1,18 @@
 # AI Tools in Terminal
 
-A curated collection of AI-powered tools for terminal and command-line environments.
+A curated collection of AI-powered tools for terminal and command-line environments. Whether you're looking to enhance your coding workflow, get AI assistance with shell commands, or integrate powerful language models into your development process, this guide will help you find the perfect tool for your needs.
 
 ## Table of Contents
 
 - [General Purpose AI Chat Tools](#general-purpose-ai-chat-tools)
 - [Code-Focused AI Tools](#code-focused-ai-tools)
 - [Terminal Integration Tools](#terminal-integration-tools)
+- [Tool Comparison](#tool-comparison)
 - [Free API Providers](#free-api-providers)
 - [Local Model Providers](#local-model-providers)
-- [API Bridges and Proxies](#api-bridges-and-proxies)
+- [API Proxies](#api-proxies)
+- [Usage Guides](#usage-guides)
+- [Git Source Code Review](#git-source-code-review)
 
 ## General Purpose AI Chat Tools
 
@@ -119,8 +122,8 @@ A curated collection of AI-powered tools for terminal and command-line environme
 
 ### Gemini API
 
-The free tier allows you to use the *Gemini-2.5-Pro* make **5 requests per minutes, and 100 requests
-per day**. You an find more details at
+The free tier allows you to use the *Gemini-2.5-Pro* to make **5 requests per minute, and 100 requests
+per day**. You can find more details at
 https://ai.google.dev/gemini-api/docs/rate-limits.
 
 The API key can be created at https://aistudio.google.com/app/apikey.
@@ -181,8 +184,8 @@ You can try different models using one API, and find your best fit.
 
 [Groq](https://console.groq.com/) offers high-speed inference with free tier access.
 
-You can find out the free models under the [Rate
-Limits](https://console.groq.com/docs/rate-limits):
+You can find the available free models in the [Rate
+Limits](https://console.groq.com/docs/rate-limits) documentation:
 
 - openai/gpt-oss-120b
 - openai/gpt-oss-20b
@@ -351,10 +354,10 @@ $ export ANTHROPIC_BASE_URL=http://130.199.48.146:4141 && claude-code
 
 ### Getting Started
 
-1. Choose a tool based on your needs (general chat vs. code assistance)
-2. Set up API keys for your preferred provider
-3. Install the CLI tool using the provider's instructions
-4. Configure authentication and start using
+1. **Choose your tool**: Browse the sections above to find a tool that matches your needs (general chat, code assistance, or terminal enhancement)
+2. **Set up API access**: Most tools require API keys from providers like OpenAI, Anthropic, or Google - check the [Free API Providers](#free-api-providers) section for free options
+3. **Install the tool**: Follow the installation instructions provided by each tool's documentation
+4. **Configure and enjoy**: Set up authentication and start enhancing your terminal workflow with AI!
 
 ### Best Practices
 
@@ -434,4 +437,4 @@ Download from [waveterm.dev/download](https://waveterm.dev/download) - available
 
 ---
 
-*This list is continuously updated. Contributions and suggestions are welcome!*
+*This list is continuously updated with the latest AI terminal tools. Contributions, suggestions, and feedback are always welcome! Feel free to open an issue or submit a pull request to help make this resource even better.*
