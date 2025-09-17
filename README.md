@@ -25,8 +25,9 @@ Here’s how they help:
 * **Shell Integration**: Pipe command outputs directly into AI assistants for analysis, summarization, or to generate subsequent commands.
 * **Shift to Terminal-Centric Workflows**: By bringing IDE-like features (e.g., code completion, natural language interaction) to the terminal, AI assistants empower a more focused and efficient workflow, reducing the reliance on heavier IDEs.
 * **Expanded Capabilities**:
+    * **Job Output Analysis**: Instantly analyze the output from scripts and commands to diagnose errors and receive suggested fixes.
     * **Natural Language Interaction**: Use plain English to get the right commands.
-    * **Error Correction**: Automatically detect and fix typos in commands.
+    * **Proactive Error Correction**: Automatically detect and fix typos in your commands before you run them.
     * **Code Understanding & Generation**: Analyze code and generate snippets from descriptions.
     * **System Administration**: Simplify complex tasks like managing cloud resources and server configuration.
 
