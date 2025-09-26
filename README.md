@@ -44,8 +44,7 @@ A curated collection of AI-powered tools for terminal and command-line environme
 ### AI Coding Assistants
 
 - **[Aider](https://aider.chat/)** - AI-powered pair programming tool for editing code directly in your local repo through natural language
-- **[GitHub Copilot CLI](https://cli.github.com/manual/gh_copilot)** - GitHub's AI assistant for the command line, 
-    providing a chat-like interface for shell and git commands.
+- **[GitHub Copilot CLI](https://github.com/github/copilot-cli)** - The power of Copilot coding agent directly to your terminal.
 - **[Cursor CLI](https://cursor.com/cli)** - Command-line interface to run AI-assisted coding tasks and workflows with Cursor editor’s models.
 - **[Plandex](https://github.com/plandex-ai/plandex)** - AI agent that plans and executes complex coding tasks across large codebases.
 - **[Crush](https://github.com/charmbracelet/crush)** - A terminal-based AI assistant and shell for software development with chat, 
@@ -346,6 +345,42 @@ $ export ANTHROPIC_BASE_URL=http://130.199.48.146:4141 && claude-code
 - Use your own URL in the `ANTHROPIC_BASE_URL` environment variable and remove the trailing '/'
 - Enable X11 forwarding when SSH-ing to remote hosts (required by xsel in the wrapper): `ssh -X username@hostname`
 - With this API wrapper, all GitHub Copilot models (not including the Market models) become accessible through Claude Code CLI
+
+#### Automated Setup with `run-claude-copilot.sh`
+
+For a streamlined experience, the `run-claude-copilot.sh` script automates the entire setup process for using Claude Code with GitHub Copilot models. It handles the installation of `nvm` (Node Version Manager), `npm`, `copilot-api`, and `claude-code`, and then launches `claude` with the necessary configuration.
+
+**Key Features:**
+
+- **Automatic Dependency Management**: Installs and configures `nvm`, `npm`, `copilot-api`, and `claude-code`.
+- **Simplified Usage**: A single command to start a fully configured Claude session.
+- **Model Selection**: Specify which Copilot model to use.
+- **Utility Functions**: Check API usage, list available models, and update packages.
+- **Transparent Argument Passing**: Forwards arguments directly to the `claude` command.
+
+**Usage:**
+
+To get started, simply run the script. It will guide you through any necessary installations.
+
+```bash
+# Run Claude with default settings
+./run-claude-copilot.sh
+
+# List available Copilot models
+./run-claude-copilot.sh --list-models
+
+# Check your Copilot API usage
+./run-claude-copilot.sh --check-usage
+
+# Run Claude with a specific model and pass a prompt
+./run-claude-copilot.sh --model claude-sonnet-4 -- -p "Explain quantum computing"
+
+# Get help on the script's options
+./run-claude-copilot.sh --help
+
+# Get help on Claude's own options
+./run-claude-copilot.sh -- --help
+```
 
 ## Usage Guides
 
