@@ -7,7 +7,7 @@
 
 # Check if script is being sourced
 if [[ "${BASH_SOURCE[0]}" != "${0}" ]] || [[ -n "$ZSH_EVAL_CONTEXT" && "$ZSH_EVAL_CONTEXT" =~ :file$ ]]; then
-  echo "Warning: This script should be executed, not sourced."
+  warn_msg "This script should be executed, not sourced."
   return 1 2>/dev/null || exit 1
 fi
 
@@ -15,7 +15,7 @@ set -e  # Exit on any error
 # Note: Removed 'set -u' to avoid conflicts with nvm.sh which has undefined variables
 
 # Configuration
-readonly SCRIPT_VERSION="20250926-r1"
+readonly SCRIPT_VERSION="20250929-r1"
 COPILOT_API_PORT=8181
 COPILOT_API_URL="http://localhost:${COPILOT_API_PORT}"
 
@@ -35,24 +35,55 @@ NOT_START_CLAUDE=false
 IS_NVM_AVAILABLE=false
 IS_NPM_AVAILABLE=false
 
+# Color definitions using tput
+bold=$(tput bold 2>/dev/null || echo '')
+red=$(tput setaf 1 2>/dev/null || echo '')
+green=$(tput setaf 2 2>/dev/null || echo '')
+yellow=$(tput setaf 3 2>/dev/null || echo '')
+blue=$(tput setaf 4 2>/dev/null || echo '')
+magenta=$(tput setaf 5 2>/dev/null || echo '')
+cyan=$(tput setaf 6 2>/dev/null || echo '')
+reset=$(tput sgr0 2>/dev/null || echo '')
+
+# Helper functions for colored output
+error_msg() {
+  echo "${red}${bold}❌ Error:${reset} $*" >&2
+}
+
+success_msg() {
+  echo "${green}${bold}✅ ${reset}$*"
+}
+
+info_msg() {
+  echo "${blue}ℹ️  ${reset}$*"
+}
+
+warn_msg() {
+  echo "${yellow}${bold}⚠️  Warning:${reset} $*" >&2
+}
+
+step_msg() {
+  echo "${cyan}${bold}➜${reset} $*"
+}
+
 
 # Help message
 show_help() {
   cat << EOF
-Usage: $0 [OPTIONS] [--] [CLAUDE ARGS...]
+${bold}Usage:${reset} $0 [OPTIONS] [--] [CLAUDE ARGS...]
 
-Options:
-   -h, --help              Show this help message
-   -m, --model NAME        Specify the model name to use (default: varies by subscription)
-   -l, --list-models       List available Copilot models
-   -c, --check-usage       Check Copilot API usage
-   -u, --update-pkgs       Update npm, copilot-api, and claude
-   -n, --not-start-claude  Print the command to start claude without executing it
-       --update-nvm        Update nvm to the latest version
-       --verbose           Show detailed output
-       --version           Show script version
+${blue}Options:${reset}
+   ${cyan}-h, --help${reset}              Show this help message
+   ${cyan}-m, --model NAME${reset}        Specify the model name to use (default: varies by subscription)
+   ${cyan}-l, --list-models${reset}       List available Copilot models
+   ${cyan}-c, --check-usage${reset}       Check Copilot API usage
+   ${cyan}-u, --update-pkgs${reset}       Update npm, copilot-api, and claude
+   ${cyan}-n, --not-start-claude${reset}  Print the command to start claude without executing it
+   ${cyan}    --update-nvm${reset}        Update nvm to the latest version
+   ${cyan}    --verbose${reset}           Show detailed output
+   ${cyan}    --version${reset}           Show script version
 
-Pass-through to Claude:
+${blue}Pass-through to Claude:${reset}
 - Any unrecognized options or positional arguments are forwarded to the 'claude' CLI.
 - Use '--' to stop this script's option parsing and pass the remainder verbatim to 'claude'.
 - Examples:
@@ -63,7 +94,7 @@ Pass-through to Claude:
 This script sets up and runs Claude Code with GitHub Copilot models.
 Any additional arguments are passed directly to the 'claude' command.
 
-Examples:
+${bold}Examples:${reset}
   $0 --help
   $0 -m claude-sonnet-4 'What is the capital of France'
   $0 --list-models
@@ -79,7 +110,7 @@ EOF
 
 # Print version information
 print_version() {
-  echo "Script Version: $SCRIPT_VERSION"
+  echo "${bold}📦 Script Version:${reset} $SCRIPT_VERSION"
   exit 0
 }
 
@@ -94,7 +125,7 @@ while [[ $# -gt 0 ]]; do
       ;; 
     -m|--model)
       if [[ -z "$2" ]] || [[ "$2" == -* ]]; then
-        echo "Error: --model requires a model name argument" >&2
+        echo "${red}${bold}❌ Error:${reset} --model requires a model name argument" >&2
         show_help
         exit 1
       fi
@@ -281,7 +312,7 @@ download_and_verify_script() {
   # Download to temporary file first
   local temp_script
   temp_script=$(mktemp) || {
-    echo "Error: Failed to create temporary file" >&2
+    error_msg "Failed to create temporary file"
     return 1
   }
   
@@ -290,19 +321,19 @@ download_and_verify_script() {
   
   # Download with timeout
   if ! curl -sSf --connect-timeout 10 --max-time 60 "$url" -o "$temp_script"; then
-    echo "Error: Failed to download script from $url" >&2
+    error_msg "Failed to download script from $url"
     return 1
   fi
   
   # Basic verification - check if it looks like a shell script
   if ! head -1 "$temp_script" | grep -q "^#!/"; then
-    echo "Error: Downloaded file doesn't appear to be a shell script" >&2
+    error_msg "Downloaded file doesn't appear to be a shell script"
     return 1
   fi
   
   # Additional pattern verification if provided
   if [[ -n "$expected_pattern" ]] && ! grep -q "$expected_pattern" "$temp_script"; then
-    echo "Error: Downloaded script doesn't contain expected pattern: $expected_pattern" >&2
+    error_msg "Downloaded script doesn't contain expected pattern: $expected_pattern" >&2
     return 1
   fi
   
@@ -325,7 +356,7 @@ read_github_token() {
     if [[ "$current_perms" != "600" ]]; then
       verbose_echo "Fixing token file permissions (was $current_perms, setting to 600)"
       chmod 600 "$github_token_file" || {
-        echo "Error: Failed to set secure permissions on token file" >&2
+        error_msg "Failed to set secure permissions on token file" >&2
         return 1
       }
     fi
@@ -338,13 +369,13 @@ read_github_token() {
 
   # Validate that token was read successfully (following project specifications)
   if [[ -z "$GITHUB_TOKEN" ]]; then
-    echo "Error: Token file exists but contains no token data" >&2
+    error_msg "Token file exists but contains no token data" >&2
     return 1
   fi
   
   # Additional validation: ensure token content is valid (no newlines, reasonable length)
   if [[ "$GITHUB_TOKEN" == *$'\n'* ]] || [[ ${#GITHUB_TOKEN} -le 10 ]]; then
-    echo "Error: Token file contains invalid token data" >&2
+    error_msg "Token file contains invalid token data" >&2
     verbose_echo "Token content preview: '${GITHUB_TOKEN:0:20}...'"
     return 1
   fi
@@ -394,12 +425,12 @@ check_github_token_file() {
     else
       echo "GitHub Copilot token file is empty at: $github_token_file"
     fi
-    echo "Running 'copilot-api auth' to authenticate with GitHub Copilot..."
+    step_msg "Running 'copilot-api auth' to authenticate with GitHub Copilot..."
     echo "Please follow the authentication prompts."
     echo ""
     
     if ! copilot-api auth; then
-      echo "Error: Failed to authenticate with GitHub Copilot" >&2
+      error_msg "Failed to authenticate with GitHub Copilot" >&2
       return 1
     fi
     
@@ -412,12 +443,12 @@ check_github_token_file() {
         echo "Successfully authenticated! Token file created at: $github_token_file"
         return 0
       else
-        echo "Error: Authentication completed but token file contains invalid data" >&2
+        error_msg "Authentication completed but token file contains invalid data" >&2
         verbose_echo "Token content preview: '${test_token:0:20}...'"
         return 1
       fi
     else
-      echo "Error: Authentication completed but token file was not created or is empty" >&2
+      error_msg "Authentication completed but token file was not created or is empty" >&2
       return 1
     fi
   fi
@@ -451,10 +482,31 @@ display_basic_info() {
   
   local access_type_sku=$(parse_json_value "$response" ".access_type_sku")
   local copilot_plan=$(parse_json_value "$response" ".copilot_plan")
+  
+  # Extract reset date
+  local reset_date=""
+  if command -v jq >/dev/null 2>&1; then
+    reset_date=$(echo "$response" | jq -r '.quota_reset_date // .quota_reset_date_utc // .limited_user_reset_date // empty' 2>/dev/null || echo "")
+  fi
 
-  echo "=== GitHub Copilot Usage Information ==="
-  echo "Access Type SKU: ${access_type_sku:-"N/A"}"
-  echo "Copilot Plan: ${copilot_plan:-"N/A"}"
+  echo ""
+  echo "${bold}${blue}════════════════════════════════════════════════════════════${reset}"
+  echo "${bold}${blue}         📊 GitHub Copilot Usage Information${reset}"
+  echo "${bold}${blue}════════════════════════════════════════════════════════════${reset}"
+  echo ""
+  
+  # Display reset date at top if available
+  if [[ -n "$reset_date" ]]; then
+    echo "${bold}📅 Next Reset Date: ${yellow}$reset_date${reset}"
+    echo ""
+  fi
+  
+  # Display subscription info
+  if [[ -n "$access_type_sku" ]]; then
+    echo "${bold}📋 Subscription: ${cyan}$access_type_sku${reset}"
+  elif [[ -n "$copilot_plan" ]]; then
+    echo "${bold}📋 Subscription: ${cyan}$copilot_plan${reset}"
+  fi
   echo ""
 }
 
@@ -462,69 +514,144 @@ display_basic_info() {
 display_free_subscription_info() {
   local response="$1"
   
-  echo "=== Free Subscription Quotas ==="
-
-  local chat_quota=$(parse_json_value "$response" ".limited_user_quotas.chat")
-  local completions_quota=$(parse_json_value "$response" ".limited_user_quotas.completions")
-
-  echo "Chat Requests: ${chat_quota:-"N/A"}"
-  echo "Code Completions: ${completions_quota:-"N/A"}"
+  echo "${bold}${magenta}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${reset}"
+  echo "${bold}${cyan}  💬 Chat Requests${reset}"
+  echo "${bold}${magenta}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${reset}"
   echo ""
 
+  local chat_quota=$(parse_json_value "$response" ".limited_user_quotas.chat")
+  
   # Extract monthly quotas for reference
-  if echo "$response" | grep -q "monthly_quotas"; then
-    local monthly_chat monthly_completions
-    if command -v jq >/dev/null 2>&1; then
-      monthly_chat=$(echo "$response" | jq -r '.monthly_quotas.chat // empty' 2>/dev/null || echo "")
-      monthly_completions=$(echo "$response" | jq -r '.monthly_quotas.completions // empty' 2>/dev/null || echo "")
-    else
-      # Fallback to sed-based parsing for monthly quotas
-      monthly_chat=$(echo "$response" | sed -n 's/.*"chat"[[:space:]]*:[[:space:]]*\([0-9]*\).*/\1/p' | tail -1 || echo "")
-      monthly_completions=$(echo "$response" | sed -n 's/.*"completions"[[:space:]]*:[[:space:]]*\([0-9]*\).*/\1/p' | tail -1 || echo "")
-    fi
-
-    echo "Monthly Limits:"
-    echo "  Chat Requests: ${monthly_chat:-"N/A"}"
-    echo "  Code Completions: ${monthly_completions:-"N/A"}"
+  local monthly_chat=""
+  if command -v jq >/dev/null 2>&1; then
+    monthly_chat=$(echo "$response" | jq -r '.monthly_quotas.chat // empty' 2>/dev/null || echo "")
   fi
+
+  if [[ -n "$monthly_chat" && -n "$chat_quota" ]]; then
+    local chat_used=$((monthly_chat - chat_quota))
+    local copilot_requests=$((chat_quota / 10))
+    
+    echo "  ${bold}Monthly Quota:${reset} $monthly_chat"
+    echo "  ${bold}Used:${reset}          $chat_used"
+    echo ""
+    
+    # Color code remaining based on amount
+    local chat_color="$green"
+    if [[ $chat_quota -le 200 ]]; then
+      chat_color="$red"
+    elif [[ $chat_quota -le 500 ]]; then
+      chat_color="$yellow"
+    fi
+    
+    echo "  ${bold}${chat_color}💬 Remaining Chat Requests: ${bold}$chat_quota${reset}"
+    echo "  ${cyan}   (≈ ${bold}$copilot_requests${reset}${cyan} Copilot requests @ 10 chats each)${reset}"
+    
+    # Add warning if low
+    if [[ $chat_quota -le 200 ]]; then
+      echo "  ${bold}${red}⚠️  WARNING: Low chat quota! Only $chat_quota requests left${reset}"
+    elif [[ $chat_quota -le 500 ]]; then
+      echo "  ${bold}${yellow}⚠️  NOTICE: $chat_quota chat requests remaining${reset}"
+    fi
+  else
+    echo "  Chat Requests: ${chat_quota:-"N/A"}"
+  fi
+  
+  echo ""
 }
 
 # Display premium subscription quota information
 display_premium_subscription_info() {
   local response="$1"
   
-  echo "=== Premium Subscription Usage ==="
+  # Premium Interactions Section
+  echo "${bold}${magenta}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${reset}"
+  echo "${bold}${cyan}  ⚡ Premium Interactions${reset}"
+  echo "${bold}${magenta}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${reset}"
+  echo ""
 
   local premium_entitlement=$(parse_json_value "$response" ".quota_snapshots.premium_interactions.entitlement")
   local premium_remaining=$(parse_json_value "$response" ".quota_snapshots.premium_interactions.remaining")
-
-  if [[ -n "$premium_entitlement" && -n "$premium_remaining" ]]; then
-    local used_requests=$((premium_entitlement - premium_remaining))
-    echo "Premium Interactions:"
-    echo "  Total Entitlement: $premium_entitlement"
-    echo "  Remaining: $premium_remaining"
-    echo "  Used: $used_requests"
-    echo "  Usage: $used_requests/$premium_entitlement requests"
-  else
-    echo "Premium Interactions: Unable to parse quota data"
+  local premium_unlimited=""
+  
+  if command -v jq >/dev/null 2>&1; then
+    premium_unlimited=$(echo "$response" | jq -r '.quota_snapshots.premium_interactions.unlimited // false' 2>/dev/null)
   fi
 
-  # Also show chat and completions if available
-  if echo "$response" | grep -q '"chat":'; then
+  if [[ "$premium_unlimited" == "true" ]]; then
+    echo "  ${bold}${green}🚀 Status: ${bold}UNLIMITED${reset}"
+  elif [[ -n "$premium_entitlement" && -n "$premium_remaining" ]]; then
+    local used_requests=$((premium_entitlement - premium_remaining))
+    
+    echo "  ${bold}Monthly Quota:${reset} $premium_entitlement"
+    echo "  ${bold}Used:${reset}          $used_requests"
     echo ""
-    echo "Chat and Completions (if available):"
-    local chat_remaining completions_remaining
-    if command -v jq >/dev/null 2>&1; then
-      chat_remaining=$(echo "$response" | jq -r '.quota_snapshots.chat.remaining // empty' 2>/dev/null || echo "")
-      completions_remaining=$(echo "$response" | jq -r '.quota_snapshots.completions.remaining // empty' 2>/dev/null || echo "")
-    else
-      # Fallback to sed-based parsing
-      chat_remaining=$(echo "$response" | sed -n 's/.*"chat"[[:space:]]*:[[:space:]]*[{][^}]*"remaining"[[:space:]]*:[[:space:]]*\([0-9]*\).*/\1/p' | head -1 || echo "")
-      completions_remaining=$(echo "$response" | sed -n 's/.*"completions"[[:space:]]*:[[:space:]]*[{][^}]*"remaining"[[:space:]]*:[[:space:]]*\([0-9]*\).*/\1/p' | head -1 || echo "")
+    
+    # Color code remaining based on amount
+    local premium_color="$green"
+    if [[ $premium_remaining -le 10 ]]; then
+      premium_color="$red"
+    elif [[ $premium_remaining -le 50 ]]; then
+      premium_color="$yellow"
     fi
+    
+    echo "  ${bold}${premium_color}⚡ Remaining Premium Requests: ${bold}$premium_remaining${reset}"
+    
+    # Add warning if low
+    if [[ $premium_remaining -le 10 ]]; then
+      echo "  ${bold}${red}⚠️  WARNING: Low quota! Only $premium_remaining requests left${reset}"
+    elif [[ $premium_remaining -le 50 ]]; then
+      echo "  ${bold}${yellow}⚠️  NOTICE: $premium_remaining requests remaining${reset}"
+    fi
+  else
+    echo "  Premium Interactions: Unable to parse quota data"
+  fi
+  
+  echo ""
 
-    echo "  Chat Remaining: ${chat_remaining:-"N/A"}"
-    echo "  Completions Remaining: ${completions_remaining:-"N/A"}"
+  # Chat Requests Section
+  local chat_entitlement chat_remaining chat_unlimited
+  if command -v jq >/dev/null 2>&1; then
+    chat_entitlement=$(echo "$response" | jq -r '.quota_snapshots.chat.entitlement // empty' 2>/dev/null || echo "")
+    chat_remaining=$(echo "$response" | jq -r '.quota_snapshots.chat.remaining // empty' 2>/dev/null || echo "")
+    chat_unlimited=$(echo "$response" | jq -r '.quota_snapshots.chat.unlimited // false' 2>/dev/null)
+  fi
+  
+  if [[ -n "$chat_remaining" || "$chat_unlimited" == "true" ]]; then
+    echo "${bold}${magenta}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${reset}"
+    echo "${bold}${cyan}  💬 Chat Requests${reset}"
+    echo "${bold}${magenta}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${reset}"
+    echo ""
+    
+    if [[ "$chat_unlimited" == "true" ]]; then
+      echo "  ${bold}${green}🚀 Chat Requests: ${bold}UNLIMITED${reset}"
+    elif [[ -n "$chat_entitlement" && -n "$chat_remaining" ]]; then
+      local chat_used=$((chat_entitlement - chat_remaining))
+      
+      echo "  ${bold}Monthly Quota:${reset} $chat_entitlement"
+      echo "  ${bold}Used:${reset}          $chat_used"
+      echo ""
+      
+      # Color code remaining based on amount
+      local chat_color="$green"
+      if [[ $chat_remaining -le 100 ]]; then
+        chat_color="$red"
+      elif [[ $chat_remaining -le 500 ]]; then
+        chat_color="$yellow"
+      fi
+      
+      echo "  ${bold}${chat_color}💬 Remaining Chat Requests: ${bold}$chat_remaining${reset}"
+      
+      # Add warning if low
+      if [[ $chat_remaining -le 100 ]]; then
+        echo "  ${bold}${red}⚠️  WARNING: Low chat quota! Only $chat_remaining requests left${reset}"
+      elif [[ $chat_remaining -le 500 ]]; then
+        echo "  ${bold}${yellow}⚠️  NOTICE: $chat_remaining chat requests remaining${reset}"
+      fi
+    else
+      echo "  Chat Remaining: ${chat_remaining:-"N/A"}"
+    fi
+    
+    echo ""
   fi
 }
 
@@ -551,18 +678,18 @@ check_usage() {
     else
       echo "=== Subscription Type Unknown ==="
       echo "Unable to determine subscription type from response"
+      echo ""
     fi
 
-    echo ""
-    echo "Raw API Response (for debugging):"
-    echo "$response"
+    # Footer
+    echo "${bold}${blue}════════════════════════════════════════════════════════════${reset}"
     echo ""
 
     return 0
   else
-    echo "Error: Could not retrieve Copilot usage information from GitHub API"
+    error_msg "Could not retrieve Copilot usage information from GitHub API"
     if [[ -n "$response" ]]; then
-      echo "Response: $response"
+      verbose_echo "Response: $response"
     fi
     return 1
   fi
@@ -608,7 +735,7 @@ wait_for_server() {
     retries=$((retries - 1))
   done
   
-  verbose_echo "Error: $service_name failed to start on port $port (tried: ${endpoints[*]})"
+  verbose_error_msg "$service_name failed to start on port $port (tried: ${endpoints[*]})"
   return 1
 }
 
@@ -639,7 +766,7 @@ start_copilot_api() {
         attempt=$((attempt + 1))
         continue
       else
-        echo "Error: copilot-api failed to start for unknown reason" >&2
+        error_msg "copilot-api failed to start for unknown reason" >&2
         if [[ -f "copilot-api.log" ]]; then
           echo "Last 10 lines from copilot-api.log:"
           tail -n 10 copilot-api.log
@@ -663,7 +790,7 @@ start_copilot_api() {
     fi
   done
   
-  echo "Error: Failed to start copilot-api on any of the attempted ports: ${ports[*]}" >&2
+  error_msg "Failed to start copilot-api on any of the attempted ports: ${ports[*]}" >&2
   exit 1
 }
 
@@ -681,7 +808,7 @@ try_source_nvm() {
       verbose_echo "Successfully sourced nvm from $HOME/.nvm/nvm.sh"
       IS_NVM_AVAILABLE=true
     else
-      echo "Error: Failed to source nvm properly"
+      error_msg "Failed to source nvm properly"
       exit 1
     fi
   fi
@@ -757,9 +884,9 @@ check_npm_prefix() {
 
 # Install nvm
 install_nvm() {
-  echo "Installing nvm"
+  step_msg "Installing nvm"
   if ! download_and_verify_script "$NVM_INSTALL_URL" "nvm"; then
-    echo "Error: Failed to install nvm" >&2
+    error_msg "Failed to install nvm" >&2
     exit 1
   fi
 }
@@ -774,7 +901,7 @@ ensure_npm() {
   fi
 
   if [[ -z "$npm_path" ]]; then
-    echo "Error: npm not found"
+    error_msg "npm not found"
     exit 1
   else
     IS_NPM_AVAILABLE=true
@@ -838,7 +965,7 @@ list_models() {
   fi
 
   if [[ -z "$copilot_token" ]]; then
-    echo "Error: Failure in getting the copilot token, exit now"
+    error_msg "Failure in getting the copilot token, exit now"
     return 1
   fi
   
@@ -862,29 +989,32 @@ list_models() {
       models=$(echo "$models_response" | jq -r '.data[].id' 2>/dev/null)
 
       if [[ -n "$models" ]]; then
-        echo "Available models:"
+        echo ""
+        echo "${bold}${blue}📋 Available models:${reset}"
         echo "$models" | while IFS= read -r model; do
           if [[ -n "$model" ]]; then
-            echo "  $model"
+            echo "  ${cyan}•${reset} $model"
           fi
         done
         return 0
       else
-        echo "Available models:"
-        echo "  No models found in API response"
+        echo ""
+        echo "${bold}${blue}📋 Available models:${reset}"
+        warn_msg "No models found in API response"
         echo "  Raw API response:"
         echo "$models_response"
         return 1
       fi
     else
-      echo "Available models:"
-      echo "  jq is required for parsing model list, but it's not installed"
+      echo ""
+      echo "${bold}${blue}📋 Available models:${reset}"
+      warn_msg "jq is required for parsing model list, but it's not installed"
       echo "  Raw API response:"
       echo "$models_response"
       return 1
     fi
   else
-    echo "Error: Could not retrieve models from GitHub Copilot API"
+    error_msg "Could not retrieve models from GitHub Copilot API"
     if [[ -n "$models_response" ]]; then
       echo "Response: $models_response"
     fi
@@ -898,7 +1028,7 @@ update_pkgs() {
   # update npm
   verbose_echo "Updating npm..."
   if ! run_with_verbosity npm update npm -g; then
-    echo "Warning: Failed to update npm, continuing..." >&2
+    warn_msg "Failed to update npm, continuing..." >&2
   fi
 
   # update/install required packages
@@ -915,7 +1045,7 @@ update_nvm() {
   latest_version=$(curl -s https://api.github.com/repos/nvm-sh/nvm/releases/latest | grep '"tag_name":' | cut -d '"' -f 4)
   
   if [[ -z "$latest_version" ]]; then
-    echo "Error: Failed to fetch latest nvm version from GitHub API"
+    error_msg "Failed to fetch latest nvm version from GitHub API"
     exit 1
   fi
   
@@ -940,7 +1070,7 @@ update_nvm() {
   # Download and install the latest nvm
   local install_url="https://raw.githubusercontent.com/nvm-sh/nvm/$latest_version/install.sh"
   if ! download_and_verify_script "$install_url" "nvm"; then
-    echo "Error: Failed to install/update nvm"
+    error_msg "Failed to install/update nvm"
     exit 1
   fi
   
@@ -955,11 +1085,11 @@ update_nvm() {
       new_version=$(nvm --version 2>/dev/null || echo "unknown")
       echo "Successfully updated nvm to version: v$new_version"
     else
-      echo "Error: Failed to source updated nvm"
+      error_msg "Failed to source updated nvm"
       exit 1
     fi
   else
-    echo "Error: Could not find nvm.sh after update"
+    error_msg "Could not find nvm.sh after update"
     exit 1
   fi
   
@@ -976,7 +1106,7 @@ main() {
     install_nvm
     try_source_nvm
     if [[ $IS_NVM_AVAILABLE != true ]]; then
-      echo "Error: Failed to install nvm"
+      error_msg "Failed to install nvm"
       exit 1
     fi
   fi
@@ -1029,16 +1159,39 @@ main() {
   verbose_echo "Starting copilot-api in background..."
   COPILOT_PID=$(start_copilot_api)
   
+  # Detect subscription type to choose appropriate default model
+  verbose_echo "Detecting subscription type..."
+  local subscription_response
+  subscription_response=$(get_copilot_subscription_data 2>/dev/null || echo "")
+  
+  local is_premium=false
+  if [[ -n "$subscription_response" ]]; then
+    # Check if this is a premium subscription (has quota_snapshots instead of limited_user_quotas)
+    if echo "$subscription_response" | grep -q "quota_snapshots"; then
+      verbose_echo "Detected premium subscription"
+      is_premium=true
+    elif echo "$subscription_response" | grep -q "limited_user_quotas"; then
+      verbose_echo "Detected free subscription"
+      is_premium=false
+    else
+      verbose_echo "Could not determine subscription type, assuming free"
+      is_premium=false
+    fi
+  else
+    verbose_echo "Could not retrieve subscription data, assuming free"
+    is_premium=false
+  fi
+  
   # Parse log file to get available models
   verbose_echo "Getting available models..."
   local models=($(extract_models))
 
-  # Choose DEFAULT_MODEL based on availability
+  # Choose DEFAULT_MODEL based on subscription type and availability
   DEFAULT_MODEL=""
   local DEFAULT_MODEL_FOUND=true
 
   if [[ ${#models[@]} -gt 0 ]]; then
-    # Prefer premium default if present, else free default, else first available
+    # Check if preferred model for subscription type is available
     local has_premium=false
     local has_free=false
     for model in "${models[@]}"; do
@@ -1049,16 +1202,39 @@ main() {
         has_free=true
       fi
     done
-    if [[ "$has_premium" == true ]]; then
-      DEFAULT_MODEL="$PREMIUM_DEFAULT_MODEL"
-    elif [[ "$has_free" == true ]]; then
-      DEFAULT_MODEL="$FREE_DEFAULT_MODEL"
+    
+    # Select based on subscription type
+    if [[ "$is_premium" == true ]]; then
+      # Premium subscription - prefer premium model
+      if [[ "$has_premium" == true ]]; then
+        DEFAULT_MODEL="$PREMIUM_DEFAULT_MODEL"
+        verbose_echo "Selected premium default model: $DEFAULT_MODEL"
+      elif [[ "$has_free" == true ]]; then
+        DEFAULT_MODEL="$FREE_DEFAULT_MODEL"
+        verbose_echo "Premium model not available, using free model: $DEFAULT_MODEL"
+      else
+        DEFAULT_MODEL_FOUND=false
+      fi
     else
-      DEFAULT_MODEL_FOUND=false
+      # Free subscription - prefer free model
+      if [[ "$has_free" == true ]]; then
+        DEFAULT_MODEL="$FREE_DEFAULT_MODEL"
+        verbose_echo "Selected free default model: $DEFAULT_MODEL"
+      elif [[ "$has_premium" == true ]]; then
+        DEFAULT_MODEL="$PREMIUM_DEFAULT_MODEL"
+        verbose_echo "Free model not available, using premium model: $DEFAULT_MODEL"
+      else
+        DEFAULT_MODEL_FOUND=false
+      fi
     fi
   else
     # Fallback when models could not be extracted
-    DEFAULT_MODEL="$FREE_DEFAULT_MODEL"
+    if [[ "$is_premium" == true ]]; then
+      DEFAULT_MODEL="$PREMIUM_DEFAULT_MODEL"
+    else
+      DEFAULT_MODEL="$FREE_DEFAULT_MODEL"
+    fi
+    verbose_echo "Could not extract models, using fallback: $DEFAULT_MODEL"
   fi
 
   # Set model name
@@ -1077,11 +1253,11 @@ main() {
     done
     if [[ "$final_model_found" != true ]]; then
       if [[ "$DEFAULT_MODEL_FOUND" == true ]]; then
-        echo "Warning: Requested model '$MODEL_NAME' not found, falling back to default model '$DEFAULT_MODEL'"
+        warn_msg "Requested model '$MODEL_NAME' not found, falling back to default model '$DEFAULT_MODEL'"
         MODEL_NAME="$DEFAULT_MODEL"
       else
         local fallback_model="${models[0]}"
-        echo "Warning: Requested/default models not available; using first available model '$fallback_model'"
+        warn_msg "Requested/default models not available; using first available model '$fallback_model'"
         MODEL_NAME="$fallback_model"
       fi
     fi
@@ -1090,35 +1266,36 @@ main() {
   verbose_echo "Using model: $MODEL_NAME"
   
   # Display or run the main job
-  echo "Running Claude Code with model: $MODEL_NAME"
+  echo ""
+  step_msg "${bold}${magenta}🚀 Running Claude Code with model: ${cyan}$MODEL_NAME${reset}"
+  echo ""
   
   if [[ "$NOT_START_CLAUDE" == true ]]; then
     # Print available models for user reference
     if [[ ${#models[@]} -gt 0 ]]; then
-      echo ""
-      echo "Available models:"
+      echo "${bold}${blue}📋 Available models:${reset}"
       for model in "${models[@]}"; do
         if [[ "$model" == "$MODEL_NAME" ]]; then
-          echo "  $model (selected)"
+          echo "  ${green}${bold}✓${reset} $model ${green}(selected)${reset}"
         else
-          echo "  $model"
+          echo "  ${cyan}•${reset} $model"
         fi
       done
     fi
 
     # Print the command without executing it
     echo ""
-    echo "To start Claude Code manually, run:"
-    echo "  ANTHROPIC_BASE_URL=$COPILOT_API_URL ANTHROPIC_AUTH_TOKEN=dummy ANTHROPIC_MODEL=$MODEL_NAME claude [your-claude-options]"
+    info_msg "${bold}To start Claude Code manually, run:${reset}"
+    echo "  ${cyan}ANTHROPIC_BASE_URL=$COPILOT_API_URL ANTHROPIC_AUTH_TOKEN=dummy ANTHROPIC_MODEL=$MODEL_NAME claude [your-claude-options]${reset}"
     echo ""
-    echo "Examples with common claude options:"
-    echo "  ANTHROPIC_BASE_URL=$COPILOT_API_URL ANTHROPIC_AUTH_TOKEN=dummy ANTHROPIC_MODEL=$MODEL_NAME claude -p \"Your prompt here\""
-    echo "  ANTHROPIC_BASE_URL=$COPILOT_API_URL ANTHROPIC_AUTH_TOKEN=dummy ANTHROPIC_MODEL=$MODEL_NAME claude --help"
+    echo "${bold}Examples with common claude options:${reset}"
+    echo "  ${cyan}ANTHROPIC_BASE_URL=$COPILOT_API_URL ANTHROPIC_AUTH_TOKEN=dummy ANTHROPIC_MODEL=$MODEL_NAME claude -p \"Your prompt here\"${reset}"
+    echo "  ${cyan}ANTHROPIC_BASE_URL=$COPILOT_API_URL ANTHROPIC_AUTH_TOKEN=dummy ANTHROPIC_MODEL=$MODEL_NAME claude --help${reset}"
     echo ""
-    echo "The copilot-api server will continue running in the background (PID: $COPILOT_PID)."
-    echo "To stop it manually when you're done, run: kill $COPILOT_PID"
+    info_msg "The copilot-api server will continue running in the background (PID: ${bold}$COPILOT_PID${reset})."
+    echo "To stop it manually when you're done, run: ${yellow}kill $COPILOT_PID${reset}"
     echo ""
-    echo "Note: Server will remain running until manually stopped"
+    warn_msg "Server will remain running until manually stopped"
   else
     # Pass any additional arguments to claude command
     export ANTHROPIC_BASE_URL=$COPILOT_API_URL ANTHROPIC_AUTH_TOKEN=dummy ANTHROPIC_MODEL=$MODEL_NAME
@@ -1128,7 +1305,7 @@ main() {
       claude
     fi
 
-    verbose_echo "Claude Code execution completed"
+    success_msg "Claude Code execution completed"
     # Cleanup is handled automatically by trap
   fi
 }
