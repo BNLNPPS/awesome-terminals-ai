@@ -4,9 +4,9 @@
 # This script checks GitHub Copilot usage information
 # Author: Shuwei Ye, yesw@bnl.gov
 # Date: 2025-10-01
-# Script Version: 20251001-r1
+# Script Version: 20251001-r2
 
-readonly SCRIPT_VERSION="20251001-r1"
+readonly SCRIPT_VERSION="20251001-r2"
 
 # Check if script is being sourced (should be executed directly)
 if [[ "${BASH_SOURCE[0]}" != "${0}" ]] || [[ -n "$ZSH_EVAL_CONTEXT" && "$ZSH_EVAL_CONTEXT" =~ :file$ ]]; then
@@ -85,34 +85,6 @@ EOF
     exit 1
 }
 
-# Function to suggest login
-suggest_login() {
-    # Check if colors should be used (respect --no-color option)
-    local bold='' green='' yellow='' cyan='' blue='' reset=''
-    
-    if [[ "$USE_COLOR" == "true" ]]; then
-        bold=$(tput setaf 2)
-        green=$(tput setaf 2)
-        yellow=$(tput bold)$(tput setaf 3)
-        cyan=$(tput setaf 6)
-        blue=$(tput setaf 4)
-        reset=$(tput sgr0)
-        
-        cat >&2 <<EOF
-${blue}🔐 Authentication Required:${reset}
-Please run ${cyan}${bold}copilot${reset} and then use ${yellow}${bold}/login${reset} to authenticate with your GitHub account.
-${green}💡 Tip:${reset} After running the commands above, try this script again.
-EOF
-    else
-        cat >&2 <<EOF
-Authentication Required:
-Please run 'copilot' and then use '/login' to authenticate with your GitHub account.
-Tip: After running the commands above, try this script again.
-EOF
-    fi
-    return 1
-}
-
 # Function to print version information
 print_version() {
     # Use tput for better portability (respect --no-color option if set)
@@ -180,7 +152,13 @@ ${red}${bold}  ❌ ERROR${reset}
 ${red}${bold}════════════════════════════════════════════════════════════${reset}
 ${red}The 'copilot' command is not found.${reset}
 
-${yellow}ℹ️  To install GitHub Copilot CLI, run:${reset}
+${yellow}ℹ️  To install GitHub Copilot CLI:${reset}
+
+${yellow}If 'nvm' is not available, first install it:${reset}
+  ${cyan}${bold}curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash${reset}
+  ${cyan}${bold}nvm install node${reset}
+
+${yellow}Then install GitHub Copilot CLI:${reset}
   ${cyan}${bold}npm install -g @github/copilot${reset}
 
 For more information, visit:
@@ -196,7 +174,13 @@ EOF
 ════════════════════════════════════════════════════════════
 The 'copilot' command is not found.
 
-To install GitHub Copilot CLI, run:
+To install GitHub Copilot CLI:
+
+If 'nvm' is not available, first install it:
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+  nvm install node
+
+Then install GitHub Copilot CLI:
   npm install -g @github/copilot
 
 For more information, visit:
@@ -464,9 +448,27 @@ get_copilot_usage() {
     fi
 }
 
+# Function to get GitHub username
+get_github_username() {
+    local github_token="$1"
+    local base_headers=(
+        "-H" "Authorization: Bearer ${github_token}"
+        "-H" "Content-Type: application/json"
+    )
+    
+    local user_info
+    if user_info=$(curl -sSf --connect-timeout 10 --max-time 30 "${base_headers[@]}" \
+         "https://api.github.com/user" 2>/dev/null); then
+        echo "$user_info" | jq -r '.login // "unknown"'
+    else
+        echo "unknown"
+    fi
+}
+
 # Function to parse and display usage
 parse_usage() {
     local json_data="$1"
+    local github_login="$2"
     
     # Use tput for better portability (only if colors are enabled)
     local bold='' green='' yellow='' blue='' cyan='' red='' magenta='' reset=''
@@ -490,11 +492,11 @@ parse_usage() {
     echo ""
     if [[ "$USE_COLOR" == "true" ]]; then
         echo "${bold}${blue}════════════════════════════════════════════════════════════${reset}"
-        echo "${bold}${blue}         📊 GitHub Copilot Usage Information${reset}"
+        echo "${bold}${blue}  📊 GitHub Copilot Usage Information for ${github_login}${reset}"
         echo "${bold}${blue}════════════════════════════════════════════════════════════${reset}"
     else
         echo "════════════════════════════════════════════════════════════"
-        echo "         GitHub Copilot Usage Information"
+        echo "  GitHub Copilot Usage Information for ${github_login}"
         echo "════════════════════════════════════════════════════════════"
     fi
     echo ""
@@ -640,69 +642,6 @@ parse_usage() {
                 echo "Premium interaction data not available."
             fi
         fi
-        
-        # Chat info section
-        if echo "$json_data" | jq -e '.quota_snapshots.chat' >/dev/null 2>&1; then
-            echo ""
-            if [[ "$USE_COLOR" == "true" ]]; then
-                echo "${bold}${magenta}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${reset}"
-                echo "${bold}${cyan}  💬 Chat Requests${reset}"
-                echo "${bold}${magenta}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${reset}"
-            else
-                echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-                echo "  Chat Requests"
-                echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            fi
-            echo ""
-            
-            local chat_unlimited
-            chat_unlimited=$(echo "$json_data" | jq -r '.quota_snapshots.chat.unlimited // false')
-            
-            if [[ "$chat_unlimited" == "true" ]]; then
-                if [[ "$USE_COLOR" == "true" ]]; then
-                    echo "  ${bold}${green}🚀 Chat Requests: ${bold}UNLIMITED${reset}"
-                else
-                    echo "  Chat Requests: UNLIMITED"
-                fi
-            else
-                local chat_entitlement chat_remaining
-                chat_entitlement=$(echo "$json_data" | jq -r '.quota_snapshots.chat.entitlement // 0')
-                chat_remaining=$(echo "$json_data" | jq -r '.quota_snapshots.chat.remaining // 0')
-                local chat_used=$((chat_entitlement - chat_remaining))
-                
-                if [[ "$USE_COLOR" == "true" ]]; then
-                    local chat_remaining_color="$green"
-                    if [[ $chat_remaining -le 100 ]]; then
-                        chat_remaining_color="$red"
-                    elif [[ $chat_remaining -le 500 ]]; then
-                        chat_remaining_color="$yellow"
-                    fi
-                    
-                    echo "  ${bold}Monthly Quota:${reset} $chat_entitlement"
-                    echo "  ${bold}Used:${reset}          $chat_used"
-                    echo ""
-                    echo "  ${bold}${chat_remaining_color}💬 Remaining Chat Requests: ${bold}$chat_remaining${reset}"
-                    
-                    # Add warning if low
-                    if [[ $chat_remaining -le 100 ]]; then
-                        echo "  ${bold}${red}⚠️  WARNING: Low chat quota! Only $chat_remaining requests left${reset}"
-                    elif [[ $chat_remaining -le 500 ]]; then
-                        echo "  ${bold}${yellow}⚠️  NOTICE: $chat_remaining chat requests remaining${reset}"
-                    fi
-                else
-                    echo "  Monthly Quota: $chat_entitlement"
-                    echo "  Used:          $chat_used"
-                    echo ""
-                    echo "  Remaining Chat Requests: $chat_remaining"
-                    
-                    if [[ $chat_remaining -le 100 ]]; then
-                        echo "  WARNING: Low chat quota! Only $chat_remaining requests left"
-                    elif [[ $chat_remaining -le 500 ]]; then
-                        echo "  NOTICE: $chat_remaining chat requests remaining"
-                    fi
-                fi
-            fi
-        fi
     fi
     
     # Footer
@@ -731,6 +670,10 @@ main() {
         exit 1
     fi
     
+    # Get GitHub username
+    local github_login
+    github_login=$(get_github_username "$github_token")
+    
     # Get usage data
     local usage_data
     if ! usage_data=$(get_copilot_usage "$github_token"); then
@@ -738,7 +681,7 @@ main() {
     fi
     
     # Parse and display usage
-    parse_usage "$usage_data"
+    parse_usage "$usage_data" "$github_login"
 }
 
 # Run main function
