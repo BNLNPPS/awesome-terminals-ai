@@ -1,5 +1,7 @@
 # AI Tools in Terminal
 
+[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+
 A curated collection of AI-powered tools for terminal and command-line environments. Whether you're looking to enhance your coding workflow, get AI assistance with shell commands, or integrate powerful language models into your development process, this guide will help you find the perfect tool for your needs.
 
 ## Table of Contents
@@ -11,9 +13,9 @@ A curated collection of AI-powered tools for terminal and command-line environme
 - [Tool Comparison](#tool-comparison)
 - [Free API Providers](#free-api-providers)
 - [Local Model Providers](#local-model-providers)
-- [API Proxies](#api-proxies)
 - [Usage Guides](#usage-guides)
-- [Git Source Code Review](#git-source-code-review)
+- [Companion Toolkit](#companion-toolkit)
+
 
 ## Introduction
 
@@ -228,179 +230,20 @@ Gemma, and DeepSeek. Cross-platform with OpenAI-compatible API.
 
 | Machine | gpt-oss:120b | gpt-oss:20b | qwen3:8b | qwen3:30b |
 | :--- | :---: | :---: | :---: | :---: |
-| **Windows** | - | 15 t/s | 12 t/s | 22 t/s |
-| **M3 Max** | - | 70 t/s | 57 t/s | 74 t/s |
-| **npps0** | 36 t/s | 156 t/s | 140 t/s | 163 t/s |
+| **Windows PC (Intel i9)** | - | 15 t/s | 12 t/s | 22 t/s |
+| **MacBook Pro (M3 Max)** | - | 70 t/s | 57 t/s | 74 t/s |
+| **Linux Server (Dual RTX 4090)** | 36 t/s | 156 t/s | 140 t/s | 163 t/s |
 
 **Machine Specifications:**
-- **Windows**: CPU: Intel i9-12900, GPU: Intel UHD Graphics 770 (2 GB), RAM: 64 GB
-- **M3 Max**: Apple M3 Max with 64 GB RAM
-- **npps0**: CPU: Xeon(R) w7-3445 (40 CPUs), GPU: 2 Nvidia RTX 4090, RAM: 128 GB
+- **Windows PC (Intel i9)**: CPU: Intel i9-12900, GPU: Intel UHD Graphics 770 (2 GB), RAM: 64 GB
+- **MacBook Pro (M3 Max)**: Apple M3 Max with 64 GB RAM
+- **Linux Server (Dual RTX 4090)**: CPU: Xeon(R) w7-3445 (40 CPUs), GPU: 2 Nvidia RTX 4090, RAM: 128 GB
 
 ### LM Studio
 
 **[LM Studio](https://lmstudio.ai/)** - User-friendly desktop GUI for running local LLMs with no 
 technical setup required. Features model marketplace, OpenAI-compatible API server, chat interface, 
 and support for GGUF models. Free for personal and commercial use.
-
-## API Proxies
-
-Most AI tools support OpenAI-compatible APIs. For tools requiring Anthropic-compatible APIs, the following solutions provide compatibility:
-
-### Claude Code Router
-
-- **[Claude Code Router](https://github.com/musistudio/claude-code-router)** - Routes Claude Code requests to different models with request customization
-
-**Installation (Linux/macOS):**
-
-```bash
-# Install Claude Code CLI (prerequisite)
-npm install -g @anthropic-ai/claude-code
-
-# Install Claude Code Router
-npm install -g @musistudio/claude-code-router
-```
-
-**Configuration Examples:**
-
-Create `~/.claude-code-router/config.json` with your preferred providers:
-
-```json
-{
-  "LOG": true,
-  "API_TIMEOUT_MS": 600000,
-  "Providers": [
-    {
-      "name": "gemini",
-      "api_base_url": "https://generativelanguage.googleapis.com/v1beta/models/",
-      "api_key": "$GEMINI_API_KEY",
-      "models": ["gemini-2.5-flash", "gemini-2.5-pro"],
-      "transformer": { "use": ["gemini"] }
-    },
-    {
-      "name": "openrouter",
-      "api_base_url": "https://openrouter.ai/api/v1/chat/completions",
-      "api_key": "$OPENROUTER_API_KEY",
-      "models": ["google/gemini-2.5-pro-preview", "anthropic/claude-sonnet-4"],
-      "transformer": { "use": ["openrouter"] }
-    },
-    {
-      "name": "grok",
-      "api_base_url": "https://api.x.ai/v1/chat/completions",
-      "api_key": "$GROK_API_KEY",
-      "models": ["grok-beta"]
-    },
-    {
-      "name": "github-copilot",
-      "api_base_url": "https://api.githubcopilot.com/chat/completions",
-      "api_key": "$GITHUB_TOKEN",
-      "models": ["gpt-4o", "claude-3-7-sonnet", "o1-preview"]
-    },
-    {
-      "name": "github-marketplace",
-      "api_base_url": "https://models.github.ai/inference/chat/completions",
-      "api_key": "$GITHUB_TOKEN",
-      "models": [
-          "openai/gpt-4o", "openai/o1-preview",
-          "xai/grok-3"]
-    },
-    {
-      "name": "ollama",
-      "api_base_url": "http://localhost:11434/v1/chat/completions",
-      "api_key": "ollama",
-      "models": ["qwen3:30b", "gpt-oss:20b", "llama3.2:latest"]
-    }
-  ],
-  "Router": {
-    "default": "gemini,gemini-2.5-flash",
-    "background": "ollama,qwen3:30b",
-    "longContext": "openrouter,google/gemini-2.5-pro-preview"
-  }
-}
-```
-
-**Usage:**
-
-```bash
-# Start Claude Code with router
-ccr code
-
-# Use UI mode for configuration
-ccr ui
-
-# Restart after config changes
-ccr restart
-
-# Switch models dynamically in Claude Code
-/model ollama,llama3.2:latest
-```
-
-It seems that the proxy for **Ollama** models does not work properly for the **Claude Code**.
-
-### Copilot API Bridge
-
-- **[copilot-api](https://github.com/ericc-ch/copilot-api)** - Converts GitHub Copilot into OpenAI/Anthropic API compatible server for use with Claude Code
-
-**Deployment Example (Singularity/CVMFS)**:
-The `copilot-api` tool is available in the modern-linuxtools Singularity image on CVMFS:
-
-```bash
-# Setup the environment
-$ source /cvmfs/atlas.sdcc.bnl.gov/users/yesw/singularity/alma9-x86/modern-linuxtools/setupMe.sh
-
-# Start the API wrapper
-$ copilot-api start -c
-[...]
-  ➜ Listening on: http://130.199.48.146:4141/
-
-# In another terminal, use with Aider
-$ export ANTHROPIC_BASE_URL=http://130.199.48.146:4141 && aider --no-git --anthropic-api-key dummy --model anthropic/claude-sonnet-4
-
-# Or use with Claude Code CLI (also included in modern-linuxtools)
-$ export ANTHROPIC_BASE_URL=http://130.199.48.146:4141 && claude-code
-```
-
-**Important Notes**:
-
-- Use your own URL in the `ANTHROPIC_BASE_URL` environment variable and remove the trailing '/'
-- Enable X11 forwarding when SSH-ing to remote hosts (required by xsel in the wrapper): `ssh -X username@hostname`
-- With this API wrapper, all GitHub Copilot models (not including the Market models) become accessible through Claude Code CLI
-
-#### Automated Setup with `run-claude-copilot.sh`
-
-For a streamlined experience, the `run-claude-copilot.sh` script automates the entire setup process for using Claude Code with GitHub Copilot models. It handles the installation of `nvm` (Node Version Manager), `npm`, `copilot-api`, and `claude-code`, and then launches `claude` with the necessary configuration.
-
-**Key Features:**
-
-- **Automatic Dependency Management**: Installs and configures `nvm`, `npm`, `copilot-api`, and `claude-code`.
-- **Simplified Usage**: A single command to start a fully configured Claude session.
-- **Model Selection**: Specify which Copilot model to use.
-- **Utility Functions**: Check API usage, list available models, and update packages.
-- **Transparent Argument Passing**: Forwards arguments directly to the `claude` command.
-
-**Usage:**
-
-To get started, simply run the script. It will guide you through any necessary installations.
-
-```bash
-# Run Claude with default settings
-./run-claude-copilot.sh
-
-# List available Copilot models
-./run-claude-copilot.sh --list-models
-
-# Check your Copilot API usage
-./run-claude-copilot.sh --check-usage
-
-# Run Claude with a specific model and pass a prompt
-./run-claude-copilot.sh --model claude-sonnet-4 -- -p "Explain quantum computing"
-
-# Get help on the script's options
-./run-claude-copilot.sh --help
-
-# Get help on Claude's own options
-./run-claude-copilot.sh -- --help
-```
 
 ## Usage Guides
 
@@ -416,76 +259,11 @@ To get started, simply run the script. It will guide you through any necessary i
 - Use code-focused tools for programming tasks
 - Leverage free APIs for experimentation
 - Consider local models for privacy-sensitive work
-- Use API bridges to integrate different tools
 
-### Detailed Tool Guides
 
-#### Aider
+## Companion Toolkit
 
-See [Aider.md](Aider.md) for a detailed usage guide and examples.
-
-#### Claude Code
-
-*Detailed usage guide and examples for Claude Code will be added here*
-
-#### Gemini CLI
-
-Detailed usage guide and examples for Gemini CLI can be found in [Gemini.md](Gemini.md).
-
-#### Qwen Code
-
-Detailed usage guide and examples for Qwen Code can be found in [Qwen.md](Qwen.md).
-
-#### Warp Terminal
-
-AI-first terminal that integrates intelligent agents directly into the command line.
-
-**Key Features:**
-
-- Natural language command generation with `#` trigger
-- Real-time AI autosuggestions and error detection
-- Voice commands and multi-agent parallel workflows
-- Enterprise features: SAML SSO, BYOL, zero data retention
-
-**Usage Limits:**
-
-- Free tier: 150 requests/month
-- Paid plans available for higher usage
-
-**Installation:**
-
-```bash
-brew install --cask warp    # macOS
-winget install Warp.Warp    # Windows
-```
-
-#### Wave Terminal
-
-Open-source terminal that brings graphical capabilities into the command line.
-
-**Key Features:**
-
-- Inline file previews (images, markdown, CSV, video)
-- Integrated VSCode-like editor for remote files
-- Built-in web browser and SSH connection manager
-- Custom widgets and dashboard creation
-- Cross-platform with local data storage
-
-**AI Integration:**
-
-- Built-in AI assistance for command suggestions and help
-- Configurable AI models via "Add AI preset..."
-- Support for Ollama and other local models
-- Context-aware recommendations
-
-**Installation:**
-Download from [waveterm.dev/download](https://waveterm.dev/download) - available as Snap, AppImage, .deb, .rpm, and Windows installers.
-
-## Git Source Code Review
-
-### GitLab Integration
-
-- MR Review tools for GitLab (implementation details to be added)
+For detailed guides, scripts, and other resources to help you get the most out of these tools, check out the [terminal-ai-toolkit](https://github.com/BNLNPPS/terminal-ai-toolkit) repository.
 
 ---
 
