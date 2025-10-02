@@ -116,8 +116,8 @@ Here’s how they help:
 | `Grok CLI`                | Paid Subscription            | Bound (Grok)                   | General Chat              |
 | **Coding Assistants**     |                              |                                |                           |
 | `Aider`                   | API Key (BYOK*)              | User-configurable              | Code Assistant            |
-| `GitHub Copilot CLI`      | Paid Subscription            | Bound (Copilot)                | Code/Shell Assistant      |
-| `Cursor CLI`              | Freemium                     | User-configurable              | Code Assistant            |
+| `GitHub Copilot CLI`      | Freemium (+ Paid Plans)      | Bound (Copilot)                | Code/Shell Assistant      |
+| `Cursor CLI`              | Freemium (+ Paid Plans)      | User-configurable              | Code Assistant            |
 | `Plandex`                 | API Key (BYOK*)              | User-configurable              | Code Assistant            |
 | `Crush`                   | Free (Shell) + API Key       | User-configurable              | AI Shell / Code Assistant |
 | `AMP CLI`                 | Paid (Enterprise)            | Bound (Sourcegraph)            | Code Assistant            |
@@ -130,7 +130,7 @@ Here’s how they help:
 | **Shell & Terminal**      |                              |                                |                           |
 | `ShellGPT`                | API Key (BYOK*)              | User-configurable              | Shell Command Gen         |
 | `zsh-ai`                  | API Key (BYOK*)              | User-configurable              | Shell Plugin              |
-| `Warp Terminal`           | Freemium                     | Bound (Built-in AI Agents)     | AI-Enhanced Terminal      |
+| `Warp Terminal`           | Freemium (+ Paid Plans)      | Bound (Built-in AI Agents)     | AI-Enhanced Terminal      |
 | `Wave Terminal`           | Free (Open Source)           | User-configurable              | Multi-Feature Terminal    |
 
 *\*BYOK (Bring Your Own Key): These tools act as clients and require you to provide your own API key from a model provider.*
