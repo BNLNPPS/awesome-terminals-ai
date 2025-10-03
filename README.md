@@ -121,7 +121,3 @@ Here’s how they help:
 ## Contribute
 
 Contributions welcome and wanted! Read the [contribution guidelines](contributing.md) first.
-
-## License
-
-[![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0/)
