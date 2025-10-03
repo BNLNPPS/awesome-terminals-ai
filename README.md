@@ -120,4 +120,4 @@ Here’s how they help:
 
 ## Contribute
 
-Contributions welcome and wanted! Read the [contribution guidelines](contributing.md) first.
+Contributions welcome and wanted! Read the [contribution guidelines](CONTRIBUTING.md) first.
