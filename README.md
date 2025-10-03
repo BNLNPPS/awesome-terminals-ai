@@ -2,16 +2,20 @@
 
 Curated AI-powered tools for terminal and command-line workflows—boost coding, get shell-command assistance, and integrate language models into your dev process.
 
-## Table of Contents
+## Contents
 
 - [Introduction](#introduction)
 - [General Purpose AI Chat Tools](#general-purpose-ai-chat-tools)
+  - [Multi-Provider Chat Interfaces](#multi-provider-chat-interfaces)
+  - [Provider-Specific Tools](#provider-specific-tools)
 - [Code-Focused AI Tools](#code-focused-ai-tools)
+  - [AI Coding Assistants](#ai-coding-assistants)
+  - [Code Generation and Analysis](#code-generation-and-analysis)
 - [Terminal Integration Tools](#terminal-integration-tools)
+  - [Shell Enhancements](#shell-enhancements)
+  - [AI-Enhanced Terminals](#ai-enhanced-terminals)
 - [Tool Comparison](#tool-comparison)
-- [Free API Providers](#free-api-providers)
-- [Local Model Providers](#local-model-providers)
-- [Usage Guides](#usage-guides)
+- [Contribute](#contribute)
 
 
 ## Introduction
@@ -34,7 +38,7 @@ Here’s how they help:
 
 ### Multi-Provider Chat Interfaces
 
-- **[llm](https://github.com/simonw/llm)** - CLI tool and Python library for interacting with OpenAI, Anthropic's Claude, Google's Gemini, Meta's LlaMA and dozens of other LLMs. Features SQLite conversation storage, embeddings, structured content extraction, and extensive plugin system.
+- **[llm](https://github.com/simonw/llm)** - CLI tool and Python library for interacting with OpenAI, Anthropic's Claude, Google's Gemini, Meta's LLaMA and dozens of other LLMs. Features SQLite conversation storage, embeddings, structured content extraction, and extensive plugin system.
 - **[AIChat](https://github.com/sigoden/aichat)** - All-in-one LLM CLI with Shell Assistant, Chat-REPL, RAG, AI Tools & Agents. Supports 20+ providers (OpenAI, Claude, Gemini, Ollama, Groq) with function calling, local server capabilities, and custom themes.
 - **[mods](https://github.com/charmbracelet/mods)** - AI for command line pipelines from Charm. Designed to ingest command output and format results as Markdown, JSON, or other text formats. Supports OpenAI, Cohere, Groq, Azure OpenAI, and LocalAI.
 - **[tAI](https://github.com/bjarneo/tAI)** - Terminal AI assistant that translates natural language to shell commands with interactive execution. Supports multiple providers (OpenAI, Google, Anthropic, Groq) with TUI setup and enhanced terminal UI.
