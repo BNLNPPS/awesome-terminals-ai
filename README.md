@@ -22,17 +22,15 @@ Curated AI-powered tools for terminal and command-line workflows—boost coding,
 
 AI-powered assistants are transforming the command-line by integrating artificial intelligence directly into the shell. This streamlines workflows and makes the terminal a more powerful and intuitive environment.
 
-Here’s how they help:
+These tools provide:
 
-* **Seamless Workflow**: Eliminates the need to copy and paste between your browser and terminal. Get suggestions, generate commands, and receive explanations directly in the command line.
-* **Shell Integration**: Pipe command outputs directly into AI assistants for analysis, summarization, or to generate subsequent commands.
-* **Shift to Terminal-Centric Workflows**: By bringing IDE-like features (e.g., code completion, natural language interaction) to the terminal, AI assistants empower a more focused and efficient workflow, reducing the reliance on heavier IDEs.
-* **Expanded Capabilities**:
-    * **Job Output Analysis**: Instantly analyze the output from scripts and commands to diagnose errors and receive suggested fixes.
-    * **Natural Language Interaction**: Use plain English to get the right commands.
-    * **Proactive Error Correction**: Automatically detect and fix typos in your commands before you run them.
-    * **Code Understanding & Generation**: Analyze code and generate snippets from descriptions.
-    * **System Administration**: Simplify complex tasks like managing cloud resources and server configuration.
+**Seamless Workflow** - Eliminates the need to copy and paste between your browser and terminal. Get suggestions, generate commands, and receive explanations directly in the command line.
+
+**Shell Integration** - Pipe command outputs directly into AI assistants for analysis, summarization, or to generate subsequent commands.
+
+**Terminal-Centric Workflows** - By bringing IDE-like features (e.g., code completion, natural language interaction) to the terminal, AI assistants empower a more focused and efficient workflow, reducing the reliance on heavier IDEs.
+
+**Expanded Capabilities** - Job output analysis to instantly diagnose errors and receive fixes, natural language interaction to use plain English for commands, proactive error correction to fix typos before execution, code understanding and generation from descriptions, and simplified system administration for managing cloud resources and server configuration.
 
 ## General Purpose AI Chat Tools
 
@@ -118,6 +116,7 @@ Here’s how they help:
 |`zsh-ai`                   |API Key (BYOK*)             |User-configurable             |Shell Plugin             |
 |`Warp Terminal`            |Freemium (+ Paid Plans)     |Bound (Built-in AI Agents)    |AI-Enhanced Terminal     |
 |`Wave Terminal`            |Free (Open Source)          |User-configurable             |Multi-Feature Terminal   |
+
 *\*BYOK (Bring Your Own Key): These tools act as clients and require you to provide your own API key from a model provider.*
 *\*\*Usage-based: These APIs typically offer a small amount of free credits, after which the cost is based on usage (pay-as-you-go).*
 
