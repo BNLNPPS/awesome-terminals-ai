@@ -1,4 +1,4 @@
-# AI Tools in Terminal [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+# Awesome AI Assistants in Terminal [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
 A curated collection of AI-powered tools for terminal and command-line environments. Whether you're looking to enhance your coding workflow, get AI assistance with shell commands, or integrate powerful language models into your development process, this guide will help you find the perfect tool for your needs.
 
@@ -12,7 +12,6 @@ A curated collection of AI-powered tools for terminal and command-line environme
 - [Free API Providers](#free-api-providers)
 - [Local Model Providers](#local-model-providers)
 - [Usage Guides](#usage-guides)
-
 
 
 ## Introduction
@@ -35,40 +34,30 @@ Here’s how they help:
 
 ### Multi-Provider Chat Interfaces
 
-- **[llm](https://github.com/simonw/llm)** - CLI tool and Python library for interacting with OpenAI, Anthropic's Claude, Google's Gemini, 
-    Meta's Llama and dozens of other LLMs. Features SQLite conversation storage, embeddings, structured content extraction, and extensive plugin system.
-- **[AIChat](https://github.com/sigoden/aichat)** - All-in-one LLM CLI with Shell Assistant, Chat-REPL, RAG, AI Tools & Agents. 
-    Supports 20+ providers (OpenAI, Claude, Gemini, Ollama, Groq) with function calling, local server capabilities, and custom themes.
-- **[mods](https://github.com/charmbracelet/mods)** - AI for command line pipelines from Charm. Designed to ingest command output 
-    and format results as Markdown, JSON, or other text formats. Supports OpenAI, Cohere, Groq, Azure OpenAI, and LocalAI.
-- **[tAI](https://github.com/bjarneo/tAI)** - Terminal AI assistant that translates natural language to shell commands with 
-    interactive execution. Supports multiple providers (OpenAI, Google, Anthropic, Groq) with TUI setup and enhanced terminal UI.
-- **[anthropic-cli](https://github.com/dvcrn/anthropic-cli)** - Unofficial CLI for interacting with Anthropic's Claude API. 
-    Supports text and image messages (PNG, JPEG, PDF), various parameters (temperature, top-k, top-p), and can be integrated with other command-line tools.
-- **[gemini-cli](https://github.com/Zibri/gemini-cli)** - Unofficial CLI client for Google Gemini API written in C. Features Deep 
-    Mode prompting, key-free operation, multi-key management, file attachments, session management, and cross-platform support.
+- **[llm](https://github.com/simonw/llm)** - CLI tool and Python library for interacting with OpenAI, Anthropic's Claude, Google's Gemini, Meta's LlaMA and dozens of other LLMs. Features SQLite conversation storage, embeddings, structured content extraction, and extensive plugin system.
+- **[AIChat](https://github.com/sigoden/aichat)** - All-in-one LLM CLI with Shell Assistant, Chat-REPL, RAG, AI Tools & Agents. Supports 20+ providers (OpenAI, Claude, Gemini, Ollama, Groq) with function calling, local server capabilities, and custom themes.
+- **[mods](https://github.com/charmbracelet/mods)** - AI for command line pipelines from Charm. Designed to ingest command output and format results as Markdown, JSON, or other text formats. Supports OpenAI, Cohere, Groq, Azure OpenAI, and LocalAI.
+- **[tAI](https://github.com/bjarneo/tAI)** - Terminal AI assistant that translates natural language to shell commands with interactive execution. Supports multiple providers (OpenAI, Google, Anthropic, Groq) with TUI setup and enhanced terminal UI.
+- **[anthropic-cli](https://github.com/dvcrn/anthropic-cli)** - Unofficial CLI for interacting with Anthropic's Claude API. Supports text and image messages (PNG, JPEG, PDF), various parameters (temperature, top-k, top-p), and can be integrated with other command-line tools.
+- **[gemini-cli](https://github.com/Zibri/gemini-cli)** - Unofficial CLI client for Google Gemini API written in C. Features Deep Mode prompting, key-free operation, multi-key management, file attachments, session management, and cross-platform support.
 
 ### Provider-Specific Tools
 
-- **[Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code)** - Official Anthropic CLI for general-purpose AI assistance, 
-    bringing the power of Claude to your terminal.
-- **[Gemini CLI](https://github.com/google-gemini/gemini-cli)** - Official Google Gemini CLI with OAuth authentication, MCP support, 
-    built-in tools (Google Search, file ops, shell commands), and GitHub integration. Free tier: 60 requests/min, 1,000 requests/day.
+- **[Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code)** - Official Anthropic CLI for general-purpose AI assistance, bringing the power of Claude to your terminal.
+- **[Gemini CLI](https://github.com/google-gemini/gemini-cli)** - Official Google Gemini CLI with OAuth authentication, MCP support, built-in tools (Google Search, file ops, shell commands), and GitHub integration. Free tier: 60 requests/min, 1,000 requests/day.
 - **[OpenAI Codex CLI](https://github.com/openai/codex)** - OpenAI's official CLI agent for general-purpose AI tasks that runs in your terminal.
-- **[Qwen Code CLI](https://github.com/QwenLM/qwen-code)** - Official AI-powered workflow tool for general tasks, optimized for Qwen3-Coder models. 
-    Features conversation management and session control. Offers Qwen OAuth with 2,000 free requests/day.
+- **[Qwen Code CLI](https://github.com/QwenLM/qwen-code)** - Official AI-powered workflow tool for general tasks, optimized for Qwen3-Coder models. Features conversation management and session control. Offers Qwen OAuth with 2,000 free requests/day.
 - **[Grok CLI](https://grokcli.io/)** - Official conversational AI CLI tool for interacting with xAI's Grok models.
 
 ## Code-Focused AI Tools
 
 ### AI Coding Assistants
 
-- **[Aider](https://aider.chat/)** - AI-powered pair programming tool for editing code directly in your local repo through natural language
+- **[Aider](https://aider.chat/)** - AI-powered pair programming tool for editing code directly in your local repo through natural language.
 - **[GitHub Copilot CLI](https://github.com/github/copilot-cli)** - The power of Copilot coding agent directly to your terminal.
 - **[Cursor CLI](https://cursor.com/cli)** - Command-line interface to run AI-assisted coding tasks and workflows with Cursor editor’s models.
 - **[Plandex](https://github.com/plandex-ai/plandex)** - AI agent that plans and executes complex coding tasks across large codebases.
-- **[Crush](https://github.com/charmbracelet/crush)** - A terminal-based AI assistant and shell for software development with chat, 
-    code analysis, and LSP integration.
+- **[Crush](https://github.com/charmbracelet/crush)** - A terminal-based AI assistant and shell for software development with chat, code analysis, and LSP integration.
 - **[AMP CLI](https://www.npmjs.com/package/@sourcegraph/amp)** - Sourcegraph's AI-powered CLI for code assistance.
 - **[RovoDev CLI](https://www.atlassian.com/blog/announcements/rovo-dev-command-line-interface)** - Atlassian's AI-powered development assistant CLI.
 - **[Auggie CLI](https://augmentcode.com/docs/cli)** - Context-aware AI coding CLI assistant from Augment Code.
@@ -83,18 +72,13 @@ Here’s how they help:
 
 ### Shell Enhancements
 
-- **[ShellGPT](https://github.com/TheR1D/shell_gpt)** - ChatGPT integration for shell commands
-- **[zsh-ai](https://github.com/matheusml/zsh-ai)** - AI-powered Zsh plugin
+- **[ShellGPT](https://github.com/TheR1D/shell_gpt)** - ChatGPT integration for shell commands.
+- **[zsh-ai](https://github.com/matheusml/zsh-ai)** - AI-powered Zsh plugin.
 
 ### AI-Enhanced Terminals
 
-- **[Warp Terminal](https://www.warp.dev/)** - AI-first terminal with intelligent 
-    agents for natural language command generation, real-time autosuggestions, 
-    error detection, voice commands, and multi-agent workflows. 
-    Features enterprise-grade security and configurable autonomy levels.
-- **[Wave Terminal](https://waveterm.dev/)** - Open-source terminal with inline 
-    file previews, VSCode-like editor, web browser integration, SSH management, 
-    custom widgets, and AI assistance. Eliminates context switching with graphical capabilities in the command line.
+- **[Warp Terminal](https://www.warp.dev/)** - AI-first terminal with intelligent agents for natural language command generation, real-time autosuggestions, error detection, voice commands, and multi-agent workflows. Features enterprise-grade security and configurable autonomy levels.
+- **[Wave Terminal](https://waveterm.dev/)** - Open-source terminal with inline file previews, VSCode-like editor, web browser integration, SSH management, custom widgets, and AI assistance. Eliminates context switching with graphical capabilities in the command line.
 
 ## Tool Comparison
 
