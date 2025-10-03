@@ -35,28 +35,19 @@ Here’s how they help:
 
 ### Multi-Provider Chat Interfaces
 
-- **[llm](https://github.com/simonw/llm)** - CLI tool and Python library for interacting with OpenAI, Anthropic's Claude, Google's Gemini, 
-    Meta's Llama and dozens of other LLMs. Features SQLite conversation storage, embeddings, structured content extraction, and extensive plugin system.
-- **[AIChat](https://github.com/sigoden/aichat)** - All-in-one LLM CLI with Shell Assistant, Chat-REPL, RAG, AI Tools & Agents. 
-    Supports 20+ providers (OpenAI, Claude, Gemini, Ollama, Groq) with function calling, local server capabilities, and custom themes.
-- **[mods](https://github.com/charmbracelet/mods)** - AI for command line pipelines from Charm. Designed to ingest command output 
-    and format results as Markdown, JSON, or other text formats. Supports OpenAI, Cohere, Groq, Azure OpenAI, and LocalAI.
-- **[tAI](https://github.com/bjarneo/tAI)** - Terminal AI assistant that translates natural language to shell commands with 
-    interactive execution. Supports multiple providers (OpenAI, Google, Anthropic, Groq) with TUI setup and enhanced terminal UI.
-- **[anthropic-cli](https://github.com/dvcrn/anthropic-cli)** - Unofficial CLI for interacting with Anthropic's Claude API. 
-    Supports text and image messages (PNG, JPEG, PDF), various parameters (temperature, top-k, top-p), and can be integrated with other command-line tools.
-- **[gemini-cli](https://github.com/Zibri/gemini-cli)** - Unofficial CLI client for Google Gemini API written in C. Features Deep 
-    Mode prompting, key-free operation, multi-key management, file attachments, session management, and cross-platform support.
+- **[llm](https://github.com/simonw/llm)** - CLI tool and Python library for interacting with OpenAI, Anthropic's Claude, Google's Gemini, Meta's Llama and dozens of other LLMs. Features SQLite conversation storage, embeddings, structured content extraction, and extensive plugin system.
+- **[AIChat](https://github.com/sigoden/aichat)** - All-in-one LLM CLI with Shell Assistant, Chat-REPL, RAG, AI Tools & Agents. Supports 20+ providers (OpenAI, Claude, Gemini, Ollama, Groq) with function calling, local server capabilities, and custom themes.
+- **[mods](https://github.com/charmbracelet/mods)** - AI for command line pipelines from Charm. Designed to ingest command output and format results as Markdown, JSON, or other text formats. Supports OpenAI, Cohere, Groq, Azure OpenAI, and LocalAI.
+- **[tAI](https://github.com/bjarneo/tAI)** - Terminal AI assistant that translates natural language to shell commands with interactive execution. Supports multiple providers (OpenAI, Google, Anthropic, Groq) with TUI setup and enhanced terminal UI.
+- **[anthropic-cli](https://github.com/dvcrn/anthropic-cli)** - Unofficial CLI for interacting with Anthropic's Claude API. Supports text and image messages (PNG, JPEG, PDF), various parameters (temperature, top-k, top-p), and can be integrated with other command-line tools.
+- **[gemini-cli](https://github.com/Zibri/gemini-cli)** - Unofficial CLI client for Google Gemini API written in C. Features Deep Mode prompting, key-free operation, multi-key management, file attachments, session management, and cross-platform support.
 
 ### Provider-Specific Tools
 
-- **[Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code)** - Official Anthropic CLI for general-purpose AI assistance, 
-    bringing the power of Claude to your terminal.
-- **[Gemini CLI](https://github.com/google-gemini/gemini-cli)** - Official Google Gemini CLI with OAuth authentication, MCP support, 
-    built-in tools (Google Search, file ops, shell commands), and GitHub integration. Free tier: 60 requests/min, 1,000 requests/day.
+- **[Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code)** - Official Anthropic CLI for general-purpose AI assistance, bringing the power of Claude to your terminal.
+- **[Gemini CLI](https://github.com/google-gemini/gemini-cli)** - Official Google Gemini CLI with OAuth authentication, MCP support, built-in tools (Google Search, file ops, shell commands), and GitHub integration. Free tier: 60 requests/min, 1,000 requests/day.
 - **[OpenAI Codex CLI](https://github.com/openai/codex)** - OpenAI's official CLI agent for general-purpose AI tasks that runs in your terminal.
-- **[Qwen Code CLI](https://github.com/QwenLM/qwen-code)** - Official AI-powered workflow tool for general tasks, optimized for Qwen3-Coder models. 
-    Features conversation management and session control. Offers Qwen OAuth with 2,000 free requests/day.
+- **[Qwen Code CLI](https://github.com/QwenLM/qwen-code)** - Official AI-powered workflow tool for general tasks, optimized for Qwen3-Coder models. Features conversation management and session control. Offers Qwen OAuth with 2,000 free requests/day.
 - **[Grok CLI](https://grokcli.io/)** - Official conversational AI CLI tool for interacting with xAI's Grok models.
 
 ## Code-Focused AI Tools
@@ -88,13 +79,8 @@ Here’s how they help:
 
 ### AI-Enhanced Terminals
 
-- **[Warp Terminal](https://www.warp.dev/)** - AI-first terminal with intelligent 
-    agents for natural language command generation, real-time autosuggestions, 
-    error detection, voice commands, and multi-agent workflows. 
-    Features enterprise-grade security and configurable autonomy levels.
-- **[Wave Terminal](https://waveterm.dev/)** - Open-source terminal with inline 
-    file previews, VSCode-like editor, web browser integration, SSH management, 
-    custom widgets, and AI assistance. Eliminates context switching with graphical capabilities in the command line.
+- **[Warp Terminal](https://www.warp.dev/)** - AI-first terminal with intelligent agents for natural language command generation, real-time autosuggestions, error detection, voice commands, and multi-agent workflows. Features enterprise-grade security and configurable autonomy levels.
+- **[Wave Terminal](https://waveterm.dev/)** - Open-source terminal with inline file previews, VSCode-like editor, web browser integration, SSH management, custom widgets, and AI assistance. Eliminates context switching with graphical capabilities in the command line.
 
 ## Tool Comparison
 
@@ -138,9 +124,7 @@ Here’s how they help:
 
 ### Gemini API
 
-The free tier allows you to use the *Gemini-2.5-Pro* to make **5 requests per minute, and 100 requests
-per day**. You can find more details at
-https://ai.google.dev/gemini-api/docs/rate-limits.
+The free tier allows you to use the *Gemini-2.5-Pro* to make **5 requests per minute, and 100 requests per day**. You can find more details at https://ai.google.dev/gemini-api/docs/rate-limits.
 
 The API key can be created at https://aistudio.google.com/app/apikey.
 
@@ -181,8 +165,7 @@ curl -L \
 
 ### OpenRouter
 
-[OpenRouter](https://openrouter.ai/) provides unified API access to multiple AI models.
-You can try different models using one API, and find your best fit.
+[OpenRouter](https://openrouter.ai/) provides unified API access to multiple AI models. You can try different models using one API, and find your best fit.
 
 **Free Models Available**:
 
@@ -214,9 +197,7 @@ Limits](https://console.groq.com/docs/rate-limits) documentation:
 
 ### Ollama
 
-**[Ollama](https://ollama.ai/)** - Lightweight framework for running LLMs locally via command line. 
-Features simple CLI interface, RESTful API, Docker-like model management, and supports popular models like Llama, 
-Gemma, and DeepSeek. Cross-platform with OpenAI-compatible API.
+**[Ollama](https://ollama.ai/)** - Lightweight framework for running LLMs locally via command line. Features simple CLI interface, RESTful API, Docker-like model management, and supports popular models like Llama, Gemma, and DeepSeek. Cross-platform with OpenAI-compatible API.
 
 #### Ollama Model Performance
 
@@ -239,9 +220,7 @@ Gemma, and DeepSeek. Cross-platform with OpenAI-compatible API.
 
 ### LM Studio
 
-**[LM Studio](https://lmstudio.ai/)** - User-friendly desktop GUI for running local LLMs with no 
-technical setup required. Features model marketplace, OpenAI-compatible API server, chat interface, 
-and support for GGUF models. Free for personal and commercial use.
+**[LM Studio](https://lmstudio.ai/)** - User-friendly desktop GUI for running local LLMs with no technical setup required. Features model marketplace, OpenAI-compatible API server, chat interface, and support for GGUF models. Free for personal and commercial use.
 
 ## Usage Guides
 
