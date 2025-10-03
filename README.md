@@ -1,6 +1,6 @@
 # Awesome AI Assistants in Terminal [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-A curated collection of AI-powered tools for terminal and command-line environments. Whether you're looking to enhance your coding workflow, get AI assistance with shell commands, or integrate powerful language models into your development process, this guide will help you find the perfect tool for your needs.
+Curated AI-powered tools for terminal and command-line workflows—boost coding, get shell-command assistance, and integrate language models into your dev process.
 
 ## Table of Contents
 
