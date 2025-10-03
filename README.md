@@ -12,7 +12,7 @@ A curated collection of AI-powered tools for terminal and command-line environme
 - [Free API Providers](#free-api-providers)
 - [Local Model Providers](#local-model-providers)
 - [Usage Guides](#usage-guides)
-- [Companion Toolkit](#companion-toolkit)
+
 
 
 ## Introduction
@@ -71,7 +71,7 @@ Here’s how they help:
     code analysis, and LSP integration.
 - **[AMP CLI](https://www.npmjs.com/package/@sourcegraph/amp)** - Sourcegraph's AI-powered CLI for code assistance.
 - **[RovoDev CLI](https://www.atlassian.com/blog/announcements/rovo-dev-command-line-interface)** - Atlassian's AI-powered development assistant CLI.
-- **[Auggie CLI](https://docs.augmentcode.com/cli/overview)** - Context-aware AI coding CLI assistant from Augment Code.
+- **[Auggie CLI](https://augmentcode.com/docs/cli)** - Context-aware AI coding CLI assistant from Augment Code.
 
 ### Code Generation and Analysis
 
@@ -259,9 +259,7 @@ and support for GGUF models. Free for personal and commercial use.
 - Consider local models for privacy-sensitive work
 
 
-## Companion Toolkit
 
-For detailed guides, scripts, and other resources to help you get the most out of these tools, check out the [terminal-ai-toolkit](https://github.com/BNLNPPS/terminal-ai-toolkit) repository.
 
 ---
 
