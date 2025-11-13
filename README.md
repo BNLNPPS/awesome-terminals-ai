@@ -1,6 +1,6 @@
 # Awesome AI Assistants in Terminal [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-> A curated AI-powered tools for terminal and command-line workflows
+> A curated AI-powered tools for terminal and command-line workflows.
 
 ## Contents
 
