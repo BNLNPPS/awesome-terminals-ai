@@ -147,8 +147,8 @@ These tools provide:
 |`Wave Terminal`            |Free (Open Source)          |User-configurable             |Multi-Feature Terminal   |
 |`iTerm2 AI Chat`           |API Key (BYOK*)             |User-configurable             |AI-Enhanced Terminal     |
 
-- *\*BYOK (Bring Your Own Key): These tools act as clients and require you to provide your own API key from a model provider.*
-- *\*\*Usage-based: These APIs typically offer a small amount of free credits, after which the cost is based on usage (pay-as-you-go).*
+*\*BYOK (Bring Your Own Key): These tools act as clients and require you to provide your own API key from a model provider.* <br>
+*\*\*Usage-based: These APIs typically offer a small amount of free credits, after which the cost is based on usage (pay-as-you-go).*
 
 ## Contribute
 
