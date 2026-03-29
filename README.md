@@ -92,6 +92,7 @@ These tools provide:
 - [ShellGPT](https://github.com/TheR1D/shell_gpt) - ChatGPT integration for shell commands.
 - [zsh-ai](https://github.com/matheusml/zsh-ai) - AI-powered Zsh plugin.
 - [TmuxAI](https://github.com/alvinunreal/tmuxai) - AI-powered plugin for Tmux that integrates ChatGPT into your terminal multiplexer.
+- [claude-dash](https://github.com/krabat-l/claude-dash) - Real-time statusline for Claude Code showing context, cost, quota, cache, tools, and git status.
 
 ### AI-Enhanced Terminals
 
