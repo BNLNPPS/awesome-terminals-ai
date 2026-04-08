@@ -39,6 +39,8 @@ These tools provide:
 - [anthropic-cli](https://github.com/dvcrn/anthropic-cli) - Unofficial CLI for interacting with Anthropic's Claude API. Supports text and image messages (PNG, JPEG, PDF), various parameters (temperature, top-k, top-p), and can be integrated with other command-line tools.
 - [Grok CLI](https://grokcli.io/) - Conversational AI CLI tool for interacting with xAI's Grok models.
 
+- [OpenPaw](https://github.com/daxaur/openpaw) - Skill pack that turns Claude Code into a personal assistant via `npx pawmode`. Adds 38 skills for email, calendar, Spotify, smart home, Slack, GitHub, and more. TypeScript, MIT licensed.
+
 ## AI Coding Assistants & Agents
 
 ### Autonomous Software Engineers
