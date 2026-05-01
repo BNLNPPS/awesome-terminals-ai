@@ -52,6 +52,7 @@ These tools provide:
 - [Cline CLI](https://docs.cline.bot/cline-cli/getting-started) - An autonomous coding agent that can edit files, run terminal commands, and execute complex software development tasks directly from the CLI.
 - [Factory Droid](https://factory.ai/product/cli) - An autonomous software engineering system designed to handle backlog tasks, refactoring, and feature development with minimal human intervention.
 - [Goose CLI](https://github.com/block/goose) - An open-source developer agent from Block that automates engineering tasks, manages developer workflows, and executes complex instructions.
+- [Crab Code](https://github.com/crabforge/crab-code) - Rust-native agentic coding CLI supporting any LLM provider with multi-entry-point architecture (CLI/IDE/Web/Desktop). Apache-2.0.
 
 ### Interactive Pair Programmers
 
