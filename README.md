@@ -11,6 +11,7 @@
   - [Interactive Pair Programmers](#interactive-pair-programmers)
   - [Provider-Native Coding CLIs](#provider-native-coding-clis)
 - [Terminal Integration Tools](#terminal-integration-tools)
+  - [Agent Observability](#agent-observability)
   - [Shell Enhancements](#shell-enhancements)
   - [AI-Enhanced Terminals](#ai-enhanced-terminals)
 
@@ -82,6 +83,10 @@ These tools provide:
 - [GitHub Copilot CLI](https://github.com/github/copilot-cli) - The power of Copilot coding agent directly to your terminal.
 
 ## Terminal Integration Tools
+
+### Agent Observability
+
+- [agenttrace](https://github.com/luoyuctl/agenttrace) - Local-first TUI for AI coding-agent session logs, tracking cost, tokens, latency, tool failures, diffs, reports, and CI gates.
 
 ### Shell Enhancements
 
