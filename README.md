@@ -37,6 +37,7 @@ These tools provide:
 - [mods](https://github.com/charmbracelet/mods) - AI for command line pipelines from Charm. Designed to ingest command output and format results as Markdown, JSON, or other text formats. Supports OpenAI, Cohere, Groq, Azure OpenAI, and LocalAI.
 - [tAI](https://github.com/bjarneo/tAI) - Terminal AI assistant that translates natural language to shell commands with interactive execution. Supports multiple providers (OpenAI, Google, Anthropic, Groq) with TUI setup and enhanced terminal UI.
 - [anthropic-cli](https://github.com/dvcrn/anthropic-cli) - Unofficial CLI for interacting with Anthropic's Claude API. Supports text and image messages (PNG, JPEG, PDF), various parameters (temperature, top-k, top-p), and can be integrated with other command-line tools.
+- [lucinate](https://github.com/lucinate-ai/lucinate) - Terminal-native TUI chat client written in Go for interacting with AI agents. Connects to OpenClaw gateways, Hermes agent profiles, and any OpenAI-compatible endpoint (Ollama, vLLM, LM Studio, OpenAI). Features streaming responses, markdown rendering, tool call cards, local skills, cron management, session browsing, and multi-agent support. Homebrew tap available.
 - [Grok CLI](https://grokcli.io/) - Conversational AI CLI tool for interacting with xAI's Grok models.
 
 ## AI Coding Assistants & Agents
