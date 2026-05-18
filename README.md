@@ -88,6 +88,7 @@ These tools provide:
 - [ShellGPT](https://github.com/TheR1D/shell_gpt) - ChatGPT integration for shell commands.
 - [zsh-ai](https://github.com/matheusml/zsh-ai) - AI-powered Zsh plugin.
 - [TmuxAI](https://github.com/alvinunreal/tmuxai) - AI-powered plugin for Tmux that integrates ChatGPT into your terminal multiplexer.
+- [codex-profiles](https://github.com/Ducksss/codex-profiles) - Launch Codex CLI and Desktop with isolated CODEX_HOME profiles for safe account switching.
 
 ### AI-Enhanced Terminals
 
