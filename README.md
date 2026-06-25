@@ -38,6 +38,7 @@ These tools provide:
 - [tAI](https://github.com/bjarneo/tAI) - Terminal AI assistant that translates natural language to shell commands with interactive execution. Supports multiple providers (OpenAI, Google, Anthropic, Groq) with TUI setup and enhanced terminal UI.
 - [anthropic-cli](https://github.com/dvcrn/anthropic-cli) - Unofficial CLI for interacting with Anthropic's Claude API. Supports text and image messages (PNG, JPEG, PDF), various parameters (temperature, top-k, top-p), and can be integrated with other command-line tools.
 - [Grok CLI](https://grokcli.io/) - Conversational AI CLI tool for interacting with xAI's Grok models.
+- [RunAPI CLI](https://github.com/runapi-ai/cli) - JSON-first terminal client for running AI image, video, music, audio, and LLM jobs on RunAPI.
 
 ## AI Coding Assistants & Agents
 
