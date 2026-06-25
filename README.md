@@ -94,6 +94,7 @@ These tools provide:
 - [Warp Terminal](https://www.warp.dev/) - AI-first terminal with intelligent agents for natural language command generation, real-time autosuggestions, error detection, voice commands, and multi-agent workflows. Features enterprise-grade security and configurable autonomy levels.
 - [Wave Terminal](https://waveterm.dev/) - Open-source terminal with inline file previews, VSCode-like editor, web browser integration, SSH management, custom widgets, and AI assistance. Eliminates context switching with graphical capabilities in the command line.
 - [iTerm2 AI Chat](https://iterm2.com/documentation-ai-chat.html) - Built-in AI integration for the popular macOS terminal emulator, allowing natural language command generation and explanation directly in the composer.
+- [TermCanvas](https://github.com/lout33/termcanvas) - Open-source macOS app that arranges tmux-backed terminal sessions as draggable nodes on an infinite canvas for running and steering multiple AI coding agents, with commander-to-worker delegation lines.
 
 ## Contribute
 
