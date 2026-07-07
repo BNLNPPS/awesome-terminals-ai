@@ -10,9 +10,11 @@
   - [Autonomous Software Engineers](#autonomous-software-engineers)
   - [Interactive Pair Programmers](#interactive-pair-programmers)
   - [Provider-Native Coding CLIs](#provider-native-coding-clis)
+- [Agent Memory & Context](#agent-memory--context)
 - [Terminal Integration Tools](#terminal-integration-tools)
   - [Shell Enhancements](#shell-enhancements)
   - [AI-Enhanced Terminals](#ai-enhanced-terminals)
+- [Contribute](#contribute)
 
 ## Introduction
 
@@ -80,6 +82,12 @@ These tools provide:
 - [OpenAI Codex CLI](https://github.com/openai/codex) - OpenAI's official CLI agent for general-purpose AI tasks that runs in your terminal.
 - [Qwen Code CLI](https://github.com/QwenLM/qwen-code) - Official AI-powered workflow tool for general tasks, optimized for Qwen3-Coder models. Features conversation management and session control. Offers Qwen OAuth with 2,000 free requests/day.
 - [GitHub Copilot CLI](https://github.com/github/copilot-cli) - The power of Copilot coding agent directly to your terminal.
+
+## Agent Memory & Context
+
+*Terminal-native tools for preserving, searching, and governing AI-agent context across sessions.*
+
+- [Tree Ring Memory](https://github.com/TerminallyLazy/Tree-Ring-Memory) - Local-first Rust CLI/TUI for AI-agent memory recall, forgetting, audit trails, and session consolidation.
 
 ## Terminal Integration Tools
 
