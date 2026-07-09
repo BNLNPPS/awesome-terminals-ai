@@ -88,6 +88,7 @@ These tools provide:
 - [ShellGPT](https://github.com/TheR1D/shell_gpt) - ChatGPT integration for shell commands.
 - [zsh-ai](https://github.com/matheusml/zsh-ai) - AI-powered Zsh plugin.
 - [TmuxAI](https://github.com/alvinunreal/tmuxai) - AI-powered plugin for Tmux that integrates ChatGPT into your terminal multiplexer.
+- [Lacy Shell](https://github.com/lacymorrow/lacy) - ZSH/Bash plugin that routes input to shell or AI agent automatically using sub-millisecond lexical analysis. Works with Claude Code, Gemini CLI, OpenCode, and others.
 
 ### AI-Enhanced Terminals
 
