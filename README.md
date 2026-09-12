@@ -45,6 +45,7 @@ These tools provide:
 
 *Agents capable of planning, executing, and managing complex, multi-step development tasks with high autonomy.*
 
+- [Ivy Tendril](https://github.com/Ivy-Interactive/Ivy-Tendril) - Open-source agentic software factory with an amazing UI that handles parallel Git worktrees for you, complete with programmatic verifications and fast review loops.
 - [Plandex](https://github.com/plandex-ai/plandex) - AI agent that plans and executes complex coding tasks across large codebases.
 - [OpenHands](https://github.com/All-Hands-AI/OpenHands) - An AI software engineer agent that can execute complex tasks on your computer.
 - [OpenCode](https://github.com/sst/opencode) - An AI-powered code generation tool that lets you build and iterate on ideas with AI.
