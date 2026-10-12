@@ -52,6 +52,7 @@ These tools provide:
 - [Cline CLI](https://docs.cline.bot/cline-cli/getting-started) - An autonomous coding agent that can edit files, run terminal commands, and execute complex software development tasks directly from the CLI.
 - [Factory Droid](https://factory.ai/product/cli) - An autonomous software engineering system designed to handle backlog tasks, refactoring, and feature development with minimal human intervention.
 - [Goose CLI](https://github.com/block/goose) - An open-source developer agent from Block that automates engineering tasks, manages developer workflows, and executes complex instructions.
+- [agnt](https://github.com/mozzarellabio/agnt) - Terminal coding agent that runs teams of agents in parallel on any model, hosted or local through Ollama and LM Studio.
 
 ### Interactive Pair Programmers
 
