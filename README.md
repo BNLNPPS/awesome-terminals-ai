@@ -70,6 +70,7 @@ These tools provide:
 - [Qoder CLI](https://qoder.com/cli) - An AI coding companion for the terminal that assists developers with writing, debugging, and understanding code through natural language.
 - [LLxprt Code](https://github.com/vybestack/llxprt-code) - A specialized AI coding assistant designed to provide expert-level code explanations, debugging help, and generation.
 - [iFlow CLI](https://github.com/iflow-ai/iflow-cli) - An AI-driven CLI tool for automating development workflows and streamlining coding processes through intelligent assistance.
+- [qmax-code](https://github.com/Quality-Max/qmax-code) - QA-focused AI terminal agent with switchable inference, standalone repository tools, and optional QualityMax workflows.
 
 ### Provider-Native Coding CLIs
 
